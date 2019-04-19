@@ -7,6 +7,7 @@ class Room:
         self.items = []
         self.npcs = []
         self.actions = ["load", "look at", "go", "take", "help", "inventory","save", "load"]
+        self.entered = False
         
     #Actions for all rooms
     def look(self):
