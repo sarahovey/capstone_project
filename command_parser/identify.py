@@ -1,3 +1,6 @@
+import items
+import room
+
 #The functions here will be used to identify the names of rooms, items, or npcs within user inputs.
 #After identifying, it will return only the name of the identified object for data purposes
 
@@ -6,6 +9,8 @@ def identifyAction(userInput, actionList):
     for action in actionList:
         if action in userInput:
             return action
+        else:
+            return "Action Invalid."
 
 #Identifies specific room within user input
 def identifyRoom(userInput, roomList):
