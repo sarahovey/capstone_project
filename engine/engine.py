@@ -13,12 +13,6 @@ import * from data
 import * from command_parser
 import * from engine
 
-print("welcome to poe's adventure!")
-print("press the any key to continue")
-
-while(True):
-    #run the game
-    #imports cover initial initializing
     """
     1. load the game
         a) load room
@@ -32,3 +26,11 @@ while(True):
         c) engine runs whatever command parser does
     3. finish game
     """
+
+print("welcome to poe's adventure!")
+print("type in 'start' to begin your doggo adventure")
+
+if(raw_input() == 'start')
+    #run game
+
+if(readinput)
