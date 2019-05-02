@@ -33,4 +33,9 @@ print("type in 'start' to begin your doggo adventure")
 if(raw_input() == 'start')
     #run game
 
-if(readinput)
+if(raw_input() == 'quit')
+    exit()
+
+#function to read command parser
+engine_parser():
+    pass
