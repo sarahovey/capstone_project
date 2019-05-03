@@ -9,9 +9,44 @@ and progresses the story
 """
 
 #import all files because the engine will use them all
-import * from data
+import * from data/items.py
 import * from command_parser
 import * from engine
+
+
+# start screen
+    # load, new game
+
+#new game 
+#call init function
+    #make all the phase 1 objects
+    #current_phase  = phase1()
+
+    #init parser?
+    #classes for intro slash whatever we need to load, they come as its coded along
+#intro scene
+    #calling intro class/ init intro object
+    #character c reation
+    #pick good boy or good girl
+    #flavortext, intro stuff
+
+#once in the game....
+#loop
+    #check *something* about player state to see if something different needs to be printed
+        #for example, if player enters a new room, need to check whether or not we've been there before
+        #and then print appropriate thing, and so on
+    #if something *is* different, call the appropriate function
+    #otherwise, ask for user input
+    #(back to the path...)
+    #enter room
+    #call 
+
+    #sub-loop
+    # ask for user input
+        #take raw input -> parser
+        #print whatever the parser gives back
+    
+
 
     """
     1. load the game
