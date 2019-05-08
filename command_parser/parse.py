@@ -1,11 +1,10 @@
 import data
 import items
 import rooms
-import identify
 
 #Receives input from engine and understands what the user is trying to accomplish
 
-#pulls arrays from data.py file
+#pulls arrays from data.py file into here
 actionList = data.actions
 roomList = data.rooms
 itemList = data.items
@@ -25,7 +24,7 @@ class Parser:
             command = None
 
         if command is None:
-            return "Action Invalid."
+            print("Action Invalid.")
 
         else:
             if command in actionList:
@@ -56,8 +55,8 @@ class Parser:
             if word in npcList:
                 npc = word
             
-            #after identifying the object, parser will let the engine know what actions & objects were
-            #engine will then need to determine if the action on the object is valid & doable.
+        #after identifying the object, parser will let the engine know what actions & objects were
+        #engine will then need to determine if the action on the object is valid & doable.
 
         if room is not None:
             object = room
@@ -68,4 +67,9 @@ class Parser:
         if npc is not None:
             object = npc
 
-        return object
+        if object is None:
+            print("Target object doesn't exist, please try command again on a valid object. It may be a room, item, or NPC.")
+            return 0
+            
+        else:
+            return object
