@@ -9,10 +9,20 @@ and progresses the story
 """
 
 #import all files because the engine will use them all
-import * from data/items.py
+import * from data
 import * from command_parser
 import * from engine
 
+# some sort class or function here
+
+while(1):
+    #initializing files that user wont see
+    the_initializer() #class that initializes everything, runs commander_parser() and start_game()
+
+    #instance of command_parser
+
+    if(raw_input() == "quit")
+        
 
 # start screen
     # load, new game
