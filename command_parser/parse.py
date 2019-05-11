@@ -11,12 +11,14 @@ itemList = data.items
 npcList = data.npcs
 
 class Parser:
+    def __init__(self):
+        self.action = None
+        self.object = None
+    
     def get_action(self, userInput):
         input = userInput.lower()
         input_words = input.split()
         
-        action = None
-
         #First word should be command word
         if input_words:
             command = input_words[0]
@@ -28,19 +30,18 @@ class Parser:
 
         else:
             if command in actionList:
-                action = command
+                self.action = command
                 #word is then compared to list of action words to see if it's a valid action command
                 #parser then sends action to engine to carryout user action
         
                 #searches through the rest of the words to find matches to see what object the
                 #commands are intended for. Whether it's a room, item, or character.
-        return action
+        return self.action
 
     def get_target(self, userInput):
         input = userInput.lower()
         input_words = input.split()
         
-        object = None
         room = None
         item = None
         npc = None
@@ -59,17 +60,17 @@ class Parser:
         #engine will then need to determine if the action on the object is valid & doable.
 
         if room is not None:
-            object = room
+            self.object = room
             
         if item is not None:
-            object = item
+            self.object = item
         
         if npc is not None:
-            object = npc
+            self.object = npc
 
-        if object is None:
+        if self.object is None:
             print("Target object doesn't exist, please try command again on a valid object. It may be a room, item, or NPC.")
             return 0
             
         else:
-            return object
+            return self.object
