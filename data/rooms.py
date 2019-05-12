@@ -81,9 +81,13 @@ class living_room(Room):
     def enter_room(self):
         if self.entered == False:
             #show game starting text, hacky to put it here but w/e
-            print("The sun gently shines through the curtains, waking you up.")
-            print("hit enter to start playing")
-            input()
+            # print("The sun gently shines through the curtains, waking you up.")
+            # print("hit enter to start playing")
+            filepath = 'intro_flavor.txt' 
+            with open(filepath) as fp: 
+                for line in fp:
+                    print(line)
+                    input()
             #long description
             self.long_description()
             #set the enter flag
@@ -93,6 +97,8 @@ class living_room(Room):
         
         
     def check_room_state(self):
+        #this will be fleshed out later, it will be useful for rooms where npcs move around
+        #and things change
         print("check to see if something is new in the room that needs to be shown to the player")
         print("for example, is there a new npc here? have we enterd this room before?")
         if not self.entered:
