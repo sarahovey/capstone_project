@@ -9,20 +9,42 @@ and progresses the story
 """
 
 #import all files because the engine will use them all
-import * from data
-import * from command_parser
-import * from engine
+# import * from data
+# import * from command_parser
+# import * from engine
 
-# some sort class or function here
+print("A Cattle Dog Adventure")
+print("""
+ ,_-~~~-,    _-~~-_
+ /        ^-_/      \_    _-~-.
+|      /\  ,          `-_/     \/
+|   /~^\ '/  /~\  /~\   / \_    \/
+ \_/    }/  /        \  \ ,_\    }
+        Y  /  /~  /~  |  Y   \   |
+       /   | {Q) {Q)  |  |    \_/
+       |   \  _===_  /   |
+       /  >--{     }--<  \/
+     /~       \_._/       ~\/
+    /    *  *   Y    *      \/
+    |      * .: | :.*  *    |
+    \    )--__==#==__--     /
+     \_      \  \  \      ,/
+       '~_    | |  }   ,~'
+          \   {___/   /
+           \   ~~~   /
+           /\._._._./\/
+          {    ^^^    }
+           ~-_______-~
+            /       \/
+""")
 
-while(1):
+while(True):
     #initializing files that user wont see
     the_initializer() #class that initializes everything, runs commander_parser() and start_game()
-
     #instance of command_parser
-
-    if(raw_input() == "quit")
-        
+    parser()
+    #play the game!
+    play()
 
 # start screen
     # load, new game
@@ -72,15 +94,15 @@ while(1):
     3. finish game
     """
 
-print("welcome to poe's adventure!")
-print("type in 'start' to begin your doggo adventure")
+# print("welcome to poe's adventure!")
+# print("type in 'start' to begin your doggo adventure")
 
-if(raw_input() == 'start')
-    #run game
+# if(raw_input() == 'start')
+#     #run game
 
-if(raw_input() == 'quit')
-    exit()
+# if(raw_input() == 'quit')
+#     exit()
 
-#function to read command parser
-engine_parser():
-    pass
+# #function to read command parser
+# engine_parser():
+#     pass
