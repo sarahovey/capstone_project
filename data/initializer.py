@@ -7,7 +7,7 @@ class initializer:
     #call load_game with that input, this will return an instance of the current phase / state of the game
     def __init__(self):
         self.parser = 1
-        self.phase = 1
+        self.current_phase = 1
         self.start_screen()
 #start up the parser
     def start_parser(self):
@@ -21,8 +21,8 @@ class initializer:
     def load_game(self, input):
         if input == "1":
             print("Starting new game...")
-            current_phase = phase.Phase1()
-            return current_phase
+            self.current_phase = phase.Phase1()
+            return self.current_phase
         elif input == "2":
             print("Load saved game")
         else:

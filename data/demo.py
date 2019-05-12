@@ -16,7 +16,14 @@ while game_type is False:
         break
     elif choice == "2":
         print("No game to load, try starting a new one")
+        break
     else:
         print("try again")
+        break
     
 #current_phase.player.current_room
+#start whole input loop
+
+# while(1):
+#     print("What will you do?")
+    
