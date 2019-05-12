@@ -37,8 +37,14 @@ print("""
            ~-_______-~
             /       \/
 """)
+print("type 'start' to start")
+print("type 'load game' to load your game")
+print("type 'quit' to quit the game")
 
 while(True):
+    if(raw_input == "quit")
+        print("you quit the game")
+        exit()
     #initializing files that user wont see
     the_initializer() #class that initializes everything, runs commander_parser() and start_game()
     #instance of command_parser
