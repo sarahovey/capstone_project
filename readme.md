@@ -6,4 +6,4 @@ Data - Sara Hovey
 Language Parser - Vannear Por
 
 To start running our adventure game enter the following command:
-    python main.py
+    python data/demo.py
