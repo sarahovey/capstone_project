@@ -1,21 +1,22 @@
 #Item parent class
 class Item:
-    def __init__(self, name, state, can_be_held):
+    def __init__(self, name, touched, can_be_held):
         self.name = name
-        self.state = False
+        self.touched = False
         self.can_be_held = can_be_held
     
     def description(self):
-        if self.state is False:
+        if self.touched is False:
             print("unaltered")
-        elif self.state is True:
+        elif self.touched is True:
             print("altered")
             
     def interact(self):
-        if self.state is False:
-            print("unaltered")
-        elif self.state is True:
+        if self.touched:
             print("altered")
+        else:
+            print("unaltered")
+            
        
 #Item child classes
 class bed (Item):
@@ -35,20 +36,23 @@ class blanket (Item):
         self.name = "blanket"
         self.can_be_held = False
         self.actions = ["get cozy"]
+        self.touched = False
     
     def description(self):
-        if self.state is False:
-            print("A warm blanket, perfect on cold nights. Neatly folded.")
-        elif self.state is True:
-            print("A warm blanket, unfolded on the floor.")
+        if self.touched:
+            return "A warm blanket, unfolded on the floor."
+        else:
+            return "A warm blanket, perfect on cold nights. Neatly folded."
+
+            
             
     def interact(self):
-        if self.state is False:
+        if self.touched is False:
             print("You get under the blanket and turn around a couple times")
-            self.state = True
-        elif self.state is True:
+            self.touched = True
+        elif self.touched is True:
             print("You do your best to fold the blanket")
-            self.state = False
+            self.touched = False
             
 class book_shelf (Item):
     def __init__(self):
@@ -57,7 +61,7 @@ class book_shelf (Item):
         self.actions = ["read"]
     
     def description(self):
-        print("A shelf filled with books. You can't read.")
+        return "A shelf filled with books. You can't read."
             
     def interact(self):
         print("...you can't read")
@@ -67,21 +71,23 @@ class couch (Item):
         self.name = "couch"
         self.can_be_held = False
         self.actions = ["jump on", "sit on"]
+        self.touched = False
     
     def description(self):
-        if self.state is False:
-            print("It is comfy and familiar.")
-        elif self.state is True:
-            print("It is comfy and familiar and has some of your fur on it")
+        if self.touched:
+            return "It is comfy and familiar and has some of your fur on it"
+        else:
+            return "It is comfy and familiar."
             
     def interact(self):
+        self.touched = True
         print("You jump up on the couch and lie down for a minute.")
         print("...that's enough of that, time for adventure!")
         
 class door (Item):
     def __init__(self, player, needed_key, from_room, to_room):
         self.name = "door"
-        self.state = False
+        self.unlocked = False
         self.can_be_held = False
         self.player = player
         self.needed_key = needed_key
@@ -90,15 +96,18 @@ class door (Item):
         self.actions = ["unlock", "enter"]
         
     def description(self):
-        if self.state is False:
-            print("It's locked")
-        elif self.state is True:
+        if self.unlocked:
             print("It's open! You can go from " + self.from_room + " to " + self.to_room)
+        else:
+            print("It's locked")
             
     def interact(self):
-        if self.state is False:
+        if self.needed_key == "none":
+            self.unlocked = True
+        if self.unlocked is False:
             if self.needed_key in self.player.inventory:
                 print("you opened the door!")
+                self.unlocked = True
             else:
                 print("you need a key to open this door")
         
@@ -121,42 +130,44 @@ class hose (Item):
         self.hose = ["play with", "play"]
     
     def description(self):
-        if self.state is False:
-            print("The wet tube: the hose")
-        elif self.state is True:
+        if self.touched:
             print("The hose is uncoiled on the lawn.")
+        else:
+            print("The wet tube: the hose")
             
     def interact(self):
-        if self.state is False:
-            print("You grab the hose and shake it around a little")
-        elif self.state is True:
+        if self.touched:
             print("You do your best to put the hose back.")
+        else:
+            print("You grab the hose and shake it around a little")
             
 class key (Item):
     #Key takes room as a param to build its description string
-    def __init__(self, Room):
-        self.name = "key"
-        self.unlocks = Room.name
+    def __init__(self, name):
+        self.name = name
         self.can_be_held = True
         self.actions = ["use", "unlock"]
     
     def description(self):
+        print("This is a key")
         #True is when you know what door it unlocks
-        if self.state is False:
-            print("This is a key")
-        elif self.state is True:
-            print("This key unlocks the " + self.unlocks)
+        # if self.touched:
+        #     print("This key unlocks the " + self.unlocks)
+        # else:
+        #     print("This is a key")
             
     def interact(self):
-        if self.state is False:
-            print("This is a key")
-        elif self.state is True:
-            print("This key unlocks the " + self.unlocks)
+        print("This is a key, use it to unlock a door...")
+        # if self.touched:
+        #     print("This is a key")
+        # else:
+        #     print("This key unlocks the " + self.unlocks)
+            
             
     def update(self):
         #call when you know what room the key unlocks
-        self.state = True
-        self.name = self.unlocks + " key"
+        self.touched = True
+        #self.name = self.unlocks + " key"
 
 class kiddie_pool (Item):
     def __init__(self):
@@ -172,15 +183,16 @@ class kiddie_pool (Item):
         
 class kibble (Item):
     def __init__(self):
-        self.name = "kibble"
+        self.name = "bowl of kibble"
         self.can_be_held = False
         self.actions = ["eat", "nom"]
+        self.touched = False
     
     def description(self):
-        if self.state is False:
-            print("A bowl of kibble")
-        elif self.state is True:
-            print("A bowl of kibble. It's got some crumbs around it.")
+        if self.touched:
+            return "A bowl of kibble. It's got some crumbs around it."
+        else:
+            return "Just a bowl of kibble"
             
     def interact(self):
         print("You eat some kibble")
@@ -203,13 +215,14 @@ class tennis_ball (Item):
         self.name = "tennis ball"
         self.can_be_held = True
         self.actions = ["chew", "play", "play with"]
+        self.touched = False
     
     def description(self):
         #altered is when you know what door it unlockes
-        if self.state is False:
-            print("Green and fuzzy. Full of hours of fun.")
-        elif self.state is True:
-            print("Still your favorite, but now a little slobbery")
+        if self.touched is False:
+            return "Green and fuzzy. Full of hours of fun."
+        elif self.touched is True:
+            return "Still your favorite, but now a little slobbery"
             
     def interact(self):
         print("You grab the ball in your mouth and chew on it some")
@@ -252,15 +265,16 @@ class tug_rope (Item):
         
 class water (Item):
     def __init__(self):
-        self.name = "water"
+        self.name = "bowl of water"
         self.can_be_held = False
         self.actions = ["drink"]
+        self.touched = False
     
     def description(self):
-        if self.state is False:
-            print("A bowl of water")
-        elif self.state is True:
-            print("A bowl of water. It's got some splashes around it.")
+        if self.touched is False:
+            return "Just a bowl of water"
+        elif self.touched is True:
+            return "A bowl of water. It's got some splashes around it."
             
     def interact(self):
         print("You take a long drink")

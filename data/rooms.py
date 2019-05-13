@@ -20,7 +20,9 @@ class Room:
         print("description of an item")
         
     def go(self, room):
-        #base action, will add more in subclass
+        #go to an item or door
+        #if a door, will try to unlock it
+        #if an item, then print the description
         print("go towards a landmark")
         
     def take(self, item):
@@ -43,56 +45,64 @@ class Room:
     
 #Phase 1 rooms    
 class living_room(Room):
-    def __init__(self):
+    def __init__(self, player):
         self.name = "Living Room"
-        self.connected_rooms = self.load_connected_rooms()
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
-            
+        self.player = player
+        self.entered = False
+        self.items = []
         self.load_items()
-        self.load_connected_rooms()
-        
-    def load_connected_rooms(self):
-        #for now putting the spawning room in charge of loading all other rooms on the map
-        #also passing in what rooms those rooms are connected to
-        #and what room a key contained within unlocks
-        #gotta be a cleaner way to make this graph, its a damn mess
-        
-        back_yard = back_yard([self])
-        bedroom = bedroom([self], )
-        kitchen = kitchen([self], office)
-        office = office([self], bedroom)
-        self.connected_rooms = [kitchen, back_yard, office, bedroom]
+        self.npcs = self.load_npcs()
         
     def load_items(self):
-        kitchen_key = items.key(kitchen)
+        kitchen_key = items.key("kitchen")
         couch = items.couch()
         tennis_ball = items.tennis_ball()
         blanket = items.blanket()
         water_bowl = items.water()
         kibble = items.kibble()
         
-        self.items = [kitchen_key, couch, tennis_ball, blanket, water_bowl, kibble]
+        self.items = [couch, tennis_ball, blanket, water_bowl, kibble]
         
     def load_npcs(self):
         self.npcs = []
         
     def long_description(self):
-        #build a description
-        #return the string to look(), or enter()
-        #you are in [room name], for x in items you see a [item] that is [state]
-        print("Long description")
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
         
     def short_description(self):
         #short description, used when you enter an already entered room
         print("You are in the living room")
         
     def enter_room(self):
-        #set the enter flag
-        self.entered = True
-        #check for any conditional npcs, items, etc
+        if self.entered == False:
+            #show game starting text, hacky to put it here but w/e
+            # print("The sun gently shines through the curtains, waking you up.")
+            # print("hit enter to start playing")
+            filepath = 'intro_flavor.txt' 
+            with open(filepath) as fp: 
+                for line in fp:
+                    print(line)
+                    input()
+            #long description
+            self.long_description()
+            #set the enter flag
+            self.entered = True
+        #check for any conditional npcs, items, etc related to the first time entering
+            #long description, etc
         
-        print("you entered room")
+        
+    def check_room_state(self):
+        #this will be fleshed out later, it will be useful for rooms where npcs move around
+        #and things change
+        print("check to see if something is new in the room that needs to be shown to the player")
+        print("for example, is there a new npc here? have we enterd this room before?")
+        if not self.entered:
+            self.enter_room()
         
 class back_yard(Room):
     def __init__(self, connected_rooms):
@@ -111,16 +121,15 @@ class back_yard(Room):
         self.npcs = []
         
 class kitchen(Room):
-    def __init__(self, connected_rooms, key_room):
+    def __init__(self, connected_rooms):
         self.connected_rooms = connected_rooms
         self.items = self.load_items()
         self.npcs = self.load_npcs()
-        self.key_room = key_room #room that the key in here unlocks
         
     def load_items(self):
         #Key to office
         #Treats!
-        office_key = items.key(self.key_room)
+        office_key = items.key("office")
         treat1 = items.treat()
         treat2 = items.treat()
         treat3 = items.treat()
@@ -131,13 +140,13 @@ class kitchen(Room):
         self.npcs = []
         
 class office(Room):
-    def __init__(self, connected_rooms, key_room):
+    def __init__(self, connected_rooms):
         self.connected_rooms = connected_rooms
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         
     def load_items(self):
-        key_to_bedroom = items.key("front door")
+        key_to_bedroom = items.key("bedroom")
         bookshelf = items.book_shelf()
         trashcan = items.trash_can()
         self.items = [key_to_bedroom, bookshelf, trashcan]
