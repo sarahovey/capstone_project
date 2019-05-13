@@ -1,3 +1,10 @@
+import os
+
+os.system('python data/demo.py')
+
+#commenting all below to do demo.py
+
+'''
 """
 engine file starts the game
 and progresses the story
@@ -112,3 +119,4 @@ while(True):
 # #function to read command parser
 # engine_parser():
 #     pass
+'''
