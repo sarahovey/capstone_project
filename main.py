@@ -1,5 +1,5 @@
 #This file imports and instantiates the engine and will launch the game
-import engine
+import data
 
 def main():
 
@@ -7,7 +7,7 @@ def main():
     #If found, this will push saved data into the new engine instance
     #Will be developed later.
 
-    engine.start()
+    demo.start()
 
 if __name__ == "__main__":
     main()
