@@ -10,38 +10,6 @@ class Room:
         self.actions = ["load", "look at", "go", "take", "help", "inventory","save", "load"]
         self.entered = False
         self.player = player
-        
-    #Actions for all rooms
-    def look(self):
-        #description of all things in the room
-        print("You look around")
-        
-    def look_at(self, item):
-        print("description of an item")
-        
-    def go(self, room):
-        #go to an item or door
-        #if a door, will try to unlock it
-        #if an item, then print the description
-        print("go towards a landmark")
-        
-    def take(self, item):
-        #base action
-        print("take an item")
-        if self.player.saddlebags is False:
-            print("you don't have anything to hold that with!")
-        
-    def help(self):
-        #print help messages from xml file
-        print("help messages")
-        
-    def inventory(self, player):
-        #call function on player to list inventory
-        player.inventory()
-        
-    def save(self, player):
-        print("saving the game...")
-        
     
 #Phase 1 rooms    
 class living_room(Room):

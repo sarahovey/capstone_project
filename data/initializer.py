@@ -10,7 +10,8 @@ class initializer:
         self.parser = 1
         self.current_phase = 1
         self.start_screen()
-        self.game = 1
+        self.game = game.Game()
+        
 #start up the parser
     def start_parser(self):
         print("starting parser, return an instance")
