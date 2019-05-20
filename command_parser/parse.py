@@ -14,6 +14,7 @@ class Parser:
     def __init__(self):
         self.action = None
         self.object = None
+        self.preposition = None
     
     def get_action(self, userInput):
         input = userInput.lower()
@@ -26,7 +27,8 @@ class Parser:
             command = None
 
         if command is None:
-            print("Action Invalid.")
+            print("Please enter a command.")
+            return 0
 
         else:
             if command in actionList:
@@ -36,6 +38,16 @@ class Parser:
         
                 #searches through the rest of the words to find matches to see what object the
                 #commands are intended for. Whether it's a room, item, or character.
+                
+                #checks to see there is also a preposition for the engine to add onto the string that's displayed to the player
+                for word in input_words:
+                    if word in prepositionList:
+                        self.preposition = word
+                
+            else:
+                print("Action Invalid.")
+                return 0
+            
         return self.action
 
     def get_target(self, userInput):
@@ -74,3 +86,11 @@ class Parser:
             
         else:
             return self.object
+
+    def print_command(self):
+        if self.action is not None and self.object is not None:
+                if self.preposition is not None:
+                    string_display = "Doge %s %s %s." % (self.action, self.preposition, self.object)
+
+                else:
+                    string_display = "Doge %s %s." % (self.action, self.object)
