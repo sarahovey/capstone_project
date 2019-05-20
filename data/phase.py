@@ -11,15 +11,11 @@ class Phase1:
         self.make_player()
         self.rooms = self.make_rooms()
         
-        
-    def make_player(self):
-        self.player = player.Player()
-        
     def make_rooms(self):
         living_room = rooms.living_room(self.player)
         self.rooms = [living_room]
         self.player.change_room(living_room)
-        print(self.player.current_room.name)
+        #print(self.player.current_room.name)
         self.player.current_room.enter_room()
         # kitchen = rooms.kitchen()
         # kitchen_door = items.door(self.player, "kitchen key", living_room, kitchen)

@@ -10,38 +10,6 @@ class Room:
         self.actions = ["load", "look at", "go", "take", "help", "inventory","save", "load"]
         self.entered = False
         self.player = player
-        
-    #Actions for all rooms
-    def look(self):
-        #description of all things in the room
-        print("You look around")
-        
-    def look_at(self, item):
-        print("description of an item")
-        
-    def go(self, room):
-        #go to an item or door
-        #if a door, will try to unlock it
-        #if an item, then print the description
-        print("go towards a landmark")
-        
-    def take(self, item):
-        #base action
-        print("take an item")
-        if self.player.saddlebags is False:
-            print("you don't have anything to hold that with!")
-        
-    def help(self):
-        #print help messages from xml file
-        print("help messages")
-        
-    def inventory(self, player):
-        #call function on player to list inventory
-        player.inventory()
-        
-    def save(self, player):
-        print("saving the game...")
-        
     
 #Phase 1 rooms    
 class living_room(Room):
@@ -81,9 +49,13 @@ class living_room(Room):
     def enter_room(self):
         if self.entered == False:
             #show game starting text, hacky to put it here but w/e
-            print("The sun gently shines through the curtains, waking you up.")
-            print("hit enter to start playing")
-            input()
+            # print("The sun gently shines through the curtains, waking you up.")
+            # print("hit enter to start playing")
+            filepath = 'intro_flavor.txt' 
+            with open(filepath) as fp: 
+                for line in fp:
+                    print(line)
+                    input()
             #long description
             self.long_description()
             #set the enter flag
@@ -93,6 +65,8 @@ class living_room(Room):
         
         
     def check_room_state(self):
+        #this will be fleshed out later, it will be useful for rooms where npcs move around
+        #and things change
         print("check to see if something is new in the room that needs to be shown to the player")
         print("for example, is there a new npc here? have we enterd this room before?")
         if not self.entered:
