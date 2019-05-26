@@ -278,3 +278,29 @@ class water (Item):
             
     def interact(self):
         print("You take a long drink")
+
+class buried_treasure(Item):
+    def __init_(self):
+        self.name = "buried treasure"
+        self.can_be_held = True
+        #this action to give to a hunan
+        self.actions = ["give"]
+        self.touched = True
+    def description(self):
+        if self.touched is False:
+            return "Its buried treasure!!! Maybe a humane would like it?"
+        else self.touched is True:
+            return "A humane wants this, its shiny!"
+
+class stick(Item):
+        def __init_(self):
+        self.name = "a stick"
+        self.can_be_held = False
+        #this action to give to a hunan
+        self.actions = ["carry"]
+        self.touched = False
+    def description(self):
+        if self.touched is False:
+            return "its a stick! yayy!!!"
+        else self.touched is True:
+            return "this is your favorite stick now."

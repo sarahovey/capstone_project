@@ -14,6 +14,7 @@ and progresses the story
 # import * from engine
 
 print("A Cattle Dog Adventure")
+print("Welcome to the game!")
 print("""
  ,_-~~~-,    _-~~-_
  /        ^-_/      \_    _-~-.
@@ -45,8 +46,24 @@ while(True):
     if(raw_input == "quit")
         print("you quit the game")
         exit()
+
+    '''
+    all these should be just run through the initializer class
+    '''
     #initializing files that user wont see
-    the_initializer() #class that initializes everything, runs commander_parser() and start_game()
+    intializer() #class that initializes everything, runs commander_parser() and start_game()
+    #Initialize item class
+    Item()
+    #Initialize NPC class
+    NPC()
+    #Initialize phase class
+    Phase1()
+    #player
+    Player()
+    #room
+    Room()
+    #state
+    State()
     #instance of command_parser
     parser()
     #play the game!

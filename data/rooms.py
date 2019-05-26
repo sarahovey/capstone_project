@@ -169,3 +169,58 @@ class bedroom(Room):
         self.npcs = []
         
 #Phase 2 rooms
+class dog_park(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = ""
+        
+    def load_items(self):
+        saddlebags = items.saddlebags(self.player)
+        bed = items.bed()
+        self.items = [saddlebags, bed]
+        
+    def load_npcs(self):
+        self.npcs = []
+
+class digging_pit(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = ""
+        
+    def load_items(self):
+        saddlebags = items.saddlebags(self.player)
+        bed = items.bed()
+        self.items = [saddlebags, bed]
+        
+    def load_npcs(self):
+        self.npcs = []
+
+class agility_course(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = ""
+        
+    def load_items(self):
+        saddlebags = items.saddlebags(self.player)
+        bed = items.bed()
+        self.items = [saddlebags, bed]
+        
+    def load_npcs(self):
+        self.npcs = []
+
+class doggie_pool(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = ""
+        
+    def load_items(self):
+        saddlebags = items.saddlebags(self.player)
+        bed = items.bed()
+        self.items = [saddlebags, bed]
+        
+    def load_npcs(self):
+        self.npcs = []
