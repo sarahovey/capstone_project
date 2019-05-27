@@ -278,3 +278,132 @@ class water (Item):
             
     def interact(self):
         print("You take a long drink")
+
+class shovel (Item):
+    def __init__(self):
+        self.name = "shovel"
+        self.can_be_held = True
+        self.actions = ["hold", "scoop"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "This shovel looks like it can scoop sand well."
+        elif self.touched is True:
+            return "Shovel was great at scooping sand, it's a little sandy now though."
+
+    def interact(self):
+        print("You test out the shovel's sand scooping abilities.")
+
+class bucket (Item):
+    def __init__(self):
+        self.name = "bucket"
+        self.can_be_held = False
+        self.actions = ["fill", "hold"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A clean, empty bucket."
+        elif self.touched is True:
+            return "The bucket is useful for holding things! Maybe you can make a sandcastle with it."
+
+    def interact(self):
+        print("You play around with the bucket and get a little sand in it.")
+
+class frisbee(Item):
+    def __init__(self):
+        self.name = "frisbee"
+        self.can_be_held = True
+        self.actions = ["chew", "play", "hold"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "Oh look a Frisbee! Maybe you can have someone play fetch with you."
+        elif self.touched is True:
+            return "This Frisbee has great aerodynamics."
+
+    def interact(self):
+        print("You throw the frisbee and it goes far! It would be a lot of fun if someone threw it for you to catch")
+
+class soccer_ball (Item):
+    def __init__(self):
+        self.name = "soccer ball"
+        self.can_be_held = False
+        self.actions = ["chew", "play", "push"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "This ball rolls around really well! Seems great to play with."
+        elif self.touched is True:
+            return "This ball rolls very fast around the grass. Provides great exercise."
+
+    def interact(self):
+        print("You push the ball around with your nose.")
+
+class floaty (Item):
+    def __init__(self):
+        self.name = "floaty"
+        self.can_be_held = False
+        self.actions = ["jump on"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A donut shaped floaty floating in the water."
+        elif self.touched is True:
+            return "This floaty is the best thing for lazing around in the water!"
+
+    def interact(self):
+        print("You slowly put your paw on the floaty to test its firmness.")
+
+class swim_goggles (Item):
+    def __init__(self):
+        self.name = "swim goggles"
+        self.can_be_held = True
+        self.actions = ["wear", "hold"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "Oh look a pair of goggles!"
+        elif self.touched is True:
+            return "These goggles are fitted perfectly for your head, perfect for seeing underwater."
+
+    def interact(self):
+        print("You try on the goggles, they fit you well!")
+
+class snorkle (Item):
+    def __init__(self):
+        self.name = "snorkel"
+        self.can_be_held = False
+        self.actions = ["wear"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A snorkle with a long tube at the end."
+        elif self.touched is True:
+            return "This snorkle is great at helping breathe underwater."
+
+    def interact(self):
+        print("You lick the snorkle... you put your mouth in the snorkle.")
+
+class beach_ball (Item):
+    def __init__(self):
+        self.name = "beach ball"
+        self.can_be_held = False
+        self.actions = ["play", "push"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A large, colorful beachball floats on the water."
+        elif self.touched is True:
+            return "The ball is fun to play with while in a pool! Bounces around well, a littl wet though."
+
+    def interact(self):
+        print("You push the beach ball a little.")
+
