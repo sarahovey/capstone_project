@@ -73,8 +73,7 @@ class living_room(Room):
             self.enter_room()
         
 class back_yard(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
 
@@ -88,9 +87,19 @@ class back_yard(Room):
     def load_npcs(self):
         self.npcs = []
         
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the back yard")
+        
 class kitchen(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         
@@ -107,6 +116,17 @@ class kitchen(Room):
     def load_npcs(self):
         self.npcs = []
         
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the kitchen")
+        
 class office(Room):
     def __init__(self, connected_rooms):
         self.connected_rooms = connected_rooms
@@ -122,9 +142,19 @@ class office(Room):
     def load_npcs(self):
         self.npcs = []
         
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the office")
+        
 class bedroom(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = ""
         
@@ -136,4 +166,13 @@ class bedroom(Room):
     def load_npcs(self):
         self.npcs = []
         
-#Phase 2 rooms
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the bedroom")

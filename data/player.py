@@ -61,5 +61,11 @@ class Player:
         
         print("interact with an item, is it a room, object, or npc?")
         print("return -1 if nothing can be done on the current room, some object, or npc")
+        
+    def save_game(self):
+        print("saving")
+        
+    def load_game(self):
+        print("loading")
 
         
