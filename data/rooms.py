@@ -166,6 +166,64 @@ class bedroom(Room):
     def load_npcs(self):
         self.npcs = []
         
+#Phase 2 rooms
+class sand_pit(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = self.load_npcs()
+    
+    def load_items(self):
+        shovel = items.shovel()
+        bucket = items.bucket()
+        sand = items.sand()
+        
+        self.items = [shovel, bucket, sand]
+    
+    def load_npcs(self):
+        self.npcs = []
+    
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+            room_description = ""
+            for item in self.items:
+                room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
+    
+    def short_description(self):
+        print("You entered the Sand Box! It is nice and soft in here")
+    
+    def enter_room(self):
+        if self.entered == False:
+            filepath = 'intro_flavor.txt'
+            with open(filepath) as fp:
+                for line in fp:
+                    print(line)
+                    input()
+        
+            self.long_description()
+    
+        self.entered = True
+
+def check_room_state(self):
+
+class open_grass(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = self.load_npcs()
+    
+    def load_items(self):
+        frisbee = items.frisbee()
+        soccer_ball = items.soccer_ball()
+        tennis_ball = items.tennis_ball()
+    
+        self.items = [frisbee, soccer_ball, tennis_ball]
+    
+    def load_npcs(self):
+        self.npcs = []
+    
     def long_description(self):
         #This builds a long description of all items and their states
         preface = "You see a "
@@ -173,6 +231,97 @@ class bedroom(Room):
         for item in self.items:
             room_description+= preface + item.name + ". " + item.description() + " \n"
         print(room_description)
-        
+    
     def short_description(self):
-        print("you are in the bedroom")
+        print("You find yourself in a big open field of grass!")
+    
+    def enter_room(self):
+        if self.entered == False:
+            filepath = 'intro_flavor.txt'
+                with open(filepath) as fp:
+                    for line in fp:
+                        print(line)
+                        input()
+        
+            self.long_description()
+    
+        self.entered = True
+
+    def check_room_state(self):
+
+class agility_course(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = self.load_npcs()
+    
+    def load_items(self):
+    #mmmm unsure what items we want here
+    
+    def load_npcs(self):
+        self.npcs = []
+    
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
+    
+    def short_description(self):
+        print("You are at the agility course!")
+    
+    def enter_room(self):
+        if self.entered == False:
+            filepath = 'intro_flavor.txt'
+                with open(filepath) as fp:
+                    for line in fp:
+                        print(line)
+                        input()
+        
+            self.long_description()
+    
+        self.entered = True
+
+def check_room_state(self):
+
+class dog_pool(Room):
+    def __init__(self, connected_rooms):
+        self.connected_rooms = connected_rooms
+        self.items = self.load_items()
+        self.npcs = self.load_npcs()
+    
+    def load_items(self):
+        floaty = items.floaty()
+        swim_goggles = items.swim_goggles()
+        snorkle = items.snorkle()
+        beach_ball = items.beach_ball()
+    
+        self.items = [floaty, swim_goggles, snorkle, beach_ball]
+    
+    def load_npcs(self):
+        self.npcs = []
+    
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        print(room_description)
+    
+    def short_description(self):
+        print("You find yourself at the edge of the dog pool. Good thing you know how to swim.")
+    
+    def enter_room(self):
+        if self.entered == False:
+            filepath = 'intro_flavor.txt'
+                with open(filepath) as fp:
+                    for line in fp:
+                        print(line)
+                        input()
+        
+            self.long_description()
+    
+        self.entered = True
