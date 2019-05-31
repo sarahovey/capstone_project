@@ -41,9 +41,10 @@ class Player:
             print(item.name)
             print(item.description)
             
-    def find_item(self, item):
+    #Get a list of item names (strings) to see if the player has one or mroe in inventory
+    def find_item(self, items):
         for item in self.inventory:
-            if item.name == item:
+            if item.name in items:
                 return True
             else:
                 return False
