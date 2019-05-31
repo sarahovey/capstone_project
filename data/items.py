@@ -408,6 +408,32 @@ class beach_ball (Item):
     def interact(self):
         print("You push the beach ball a little.")
         
+class stick (Item):
+    def __init__(self):
+        self.name = "stick"
+        self.can_be_held = True
+        self.actions = ["play", "bite"]
+        self.touched = False
+    
+    def description(self):
+        print("The perfect stick for playing with!")
+
+    def interact(self):
+        print("You carry the stick around proudly")
+        
+class squeaky_toy (Item):
+    def __init__(self):
+        self.name = "squeaky toy"
+        self.can_be_held = True
+        self.actions = ["play", "bite"]
+        self.touched = False
+    
+    def description(self):
+        print("The squeakiest squeaky toy")
+
+    def interact(self):
+        print("*SQUEAK*")
+        
 class map (Item):
     def __init__(self):
         self.name = "map"

@@ -60,7 +60,7 @@ class rusty(NPC):
         
     def is_quest_finished(self):
         #Check if the player has the npc's requested item in their inventoru
-        self.quest_finished = self.player.find_item(["ball", "stick", "squeaky toy"])
+        self.quest_finished = self.player.find_item(["tennis ball", "stick", "squeaky toy"])
         
     def show_dialogue(self):
         #check whether or not a player has a certain item
