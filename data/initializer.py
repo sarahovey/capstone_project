@@ -24,7 +24,7 @@ class initializer:
     def load_game(self, input):
         if input == "1":
             print("Starting new game...")
-            self.game = game.new_game()
+            self.game.new_game()
             #self.current_phase = phase.Phase1()
             #return self.current_phase
         elif input == "2":

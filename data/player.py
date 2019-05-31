@@ -41,6 +41,14 @@ class Player:
             print(item.name)
             print(item.description)
             
+    #Get a list of item names (strings) to see if the player has one or mroe in inventory
+    def find_item(self, items):
+        for item in self.inventory:
+            if item.name in items:
+                return True
+            else:
+                return False
+            
     def save(self, player):
         print("saving the game...")
         
@@ -61,5 +69,11 @@ class Player:
         
         print("interact with an item, is it a room, object, or npc?")
         print("return -1 if nothing can be done on the current room, some object, or npc")
+        
+    def save_game(self):
+        print("saving")
+        
+    def load_game(self):
+        print("loading")
 
         

@@ -5,10 +5,9 @@ import player
 
 #this can be abstracted out later
 class Phase1:
-    def __init__(self):
+    def __init__(self, player):
         self.name = "Phase 1"
-        self.player = ""
-        self.make_player()
+        self.player = player
         self.rooms = self.make_rooms()
         
     def make_rooms(self):
