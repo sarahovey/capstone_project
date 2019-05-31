@@ -9,6 +9,7 @@ actionList = data.actions
 roomList = data.rooms
 itemList = data.items
 npcList = data.npcs
+prepositionList = data.prepositions
 
 class Parser:
     def __init__(self):
@@ -27,7 +28,7 @@ class Parser:
             command = None
 
         if command is None:
-            print("Please enter a command.")
+            print("Please enter a valid command.")
             return 0
 
         else:

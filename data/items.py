@@ -279,6 +279,7 @@ class water (Item):
     def interact(self):
         print("You take a long drink")
 
+#Phase 2 Items
 class shovel (Item):
     def __init__(self):
         self.name = "shovel"
@@ -402,11 +403,11 @@ class beach_ball (Item):
         if self.touched is False:
             return "A large, colorful beachball floats on the water."
         elif self.touched is True:
-            return "The ball is fun to play with while in a pool! Bounces around well, a littl wet though."
+            return "The ball is fun to play with while in a pool! Bounces around well, a little wet though."
 
     def interact(self):
         print("You push the beach ball a little.")
-
+        
 class map (Item):
     def __init__(self):
         self.name = "map"
@@ -420,3 +421,246 @@ class map (Item):
     def interact(self):
         print("You read the map. You find a route to your human's office.")
         print("Do you want to go there now?")
+        
+class pad_lock (Item):
+    def __init__(self):
+        self.name = "pad lock"
+        self.can_be_held = False
+        self.actions = ["touch", "sniff", "yank"]
+        self.touched = False
+
+    def description(self):
+        if self.touched is False:
+            return "A locked pad lock"
+        elif self.touched is True:
+            return "This pad lock is very difficult to open"
+
+    def interact(self):
+        print("You push the pad lock with your nose... you chew around on it, nothing happens.")
+
+class door_mat (Item):
+    def __init__(self):
+        self.name = "door mat"
+        self.can_be_held = False
+        self.actions = ["move", "jump", "sniff"]
+        self.touched = False
+
+    def description(self):
+        if self.touched is False:
+            return "This doormat is laying right outside the doors to the office."
+        elif self.touched is True:
+            return "This doormat is covered in your dog hair, but you realized that it is movable."
+
+    def interact(self):
+        print("You walk on top of the door mat in circles to inspect it.")
+
+#Office key is contained under the door mat to unlock the padlock to the office door.
+class office_key (Item):
+    def __init__(self):
+        self.name = "office key"
+        self.can_be_held = True
+        self.actions = ["hold", "use"]
+        self.touched = False
+
+    def description(self):
+        if self.touched is False:
+            return "This shiny key has tape on it that says OFFICE on it"
+        elif self.touched is True:
+            return "This key says OFFICE on it, it might be helpful"
+
+    def interact(self):
+        print("")
+
+class plant (Item):
+    def __init__(self):
+        self.name = "plant"
+        self.can_be_held = False
+        self.actions = ["sniff", "lick"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A bright, color plant in a nicely painted vase."
+        elif self.touched is True:
+            return "Looks nice, smells good... tastes horrible."
+
+    def interact(self):
+        print("You give the plant a nice whiff.")
+
+class chair (Item):
+    def __init__(self):
+        self.name = "chair"
+        self.can_be_held = False
+        self.actions = ["jump on"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A human chair to wait in."
+        elif self.touched is True:
+            return "This chair was very comfortable."
+
+    def interact(self):
+        print("You step on certain parts of the chair.")
+
+class magazine (Item):
+    def __init__(self):
+        self.name = "magazine"
+        self.can_be_held = True
+        self.actions = ["hold", "lick"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A colorful magazine with a human on the cover."
+        elif self.touched is True:
+            return "The magazine is a little wet now, the images are becoming distorted."
+
+    def interact(self):
+        print("This magazine interests you, you try to find your human in the magazine by flipping through the pages with your nose.")
+
+class snacks (Item):
+    def __init__(self):
+        self.name = "snacks"
+        self.can_be_held = True
+        self.actions = ["hold", "eat", "sniff"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "Various snacks are laying around the room."
+        elif self.touched is True:
+            return "All these snacks are the ones you love to steal back at home! Chips! Fruits! Candy!"
+
+    def interact(self):
+        print("You look around at the snacks and see an open bag of chips! You eat a chip - delicious.")
+
+class table (Item):
+    def __init__(self):
+        self.name = "table"
+        self.can_be_held = False
+        self.actions = ["jump on"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A breakroom table with several random things on it."
+        elif self.touched is True:
+            return ""
+
+    def interact(self):
+        print("You circle around the table and look at the several things on top.")
+
+class water_cooler(Item):
+    def __init__(self):
+        self.name = "water cooler"
+        self.can_be_held = False
+        self.actions = []
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return ""
+        elif self.touched is True:
+            return ""
+
+    def interact(self):
+                print("")
+
+class vacuum (Item):
+    def __init__(self):
+        self.name = "vacuum"
+        self.can_be_held = False
+        self.actions = ["bark", "sniff", "push"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "An evil thing with bright lights and loud noises."
+        elif self.touched is True:
+            return "This is your worst enemy, you are avoiding this monster at all cost."
+
+    def interact(self):
+        print("You try to assert your dominance by standing your ground and barking at the vacuum.")
+
+class spray_bottle (Item):
+    def __init__(self):
+        self.name = "spray bottle"
+        self.can_be_held = True
+        self.actions = ["hold", "lick"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A spray bottle, half-filled with water"
+        elif self.touched is True:
+            return "This spray bottle sprays well. Provides a huge mist."
+
+    def interact(self):
+        print("You place your paw on the handle and a huge mist sprays out. You lick the water dripping out of the nozzle.")
+
+class office_supplies (Item):
+    def __init__(self):
+        self.name = "office supplies"
+        self.can_be_held = True
+        self.actions = ["hold", "inspect"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return "A pouch filled with several office supplies."
+        elif self.touched is True:
+            return "This pouch contains pencils, pens, scissors, some paperclips, and a highlighter."
+
+    def interact(self):
+        print("You paw through the pouch and look through all the office supplies in the pouch.")
+
+class computer (Item):
+    def __init__(self):
+        self.name = "computer"
+        self.can_be_held = False
+        self.actions = []
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return ""
+        elif self.touched is True:
+            return ""
+
+    def interact(self):
+        print("")
+
+class office_chair (Item):
+    def __init__(self):
+        self.name = "office chair"
+        self.can_be_held = False
+        self.actions = []
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return ""
+        elif self.touched is True:
+            return ""
+
+    def interact(self):
+        print("")
+
+class notebook (Item):
+    def __init__(self):
+        self.name = "notebook"
+        self.can_be_held = True
+        self.actions = ["read", "hold"]
+        self.touched = False
+    
+    def description(self):
+        if self.touched is False:
+            return ""
+        
+        elif self.touched is True:
+            return ""
+
+#player reads notebook here and it gives a clue
+    def interact(self):
+        print("")
