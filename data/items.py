@@ -407,3 +407,16 @@ class beach_ball (Item):
     def interact(self):
         print("You push the beach ball a little.")
 
+class map (Item):
+    def __init__(self):
+        self.name = "map"
+        self.can_be_held = True
+        self.actions = ["read", "open"]
+        self.touched = False
+    
+    def description(self):
+        print("A map to the office your human works at")
+
+    def interact(self):
+        print("You read the map. You find a route to your human's office.")
+        print("Do you want to go there now?")
