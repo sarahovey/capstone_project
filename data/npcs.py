@@ -11,7 +11,7 @@ class NPC:
 class cat(NPC):
     def __init__(self):
         self.name = "cat"
-        self.description = self.build_description()
+        self.description = self.description()
         self.dialogue = self.show_dialogue()
         
     def meet(self):
@@ -20,7 +20,7 @@ class cat(NPC):
         #update accordingly
         self.met = True
         
-    def build_description(self):
+    def description(self):
         #description can depend on whether or not you've already met the npc
         if self.met:
             print("its your old friend")
@@ -37,7 +37,7 @@ class cat(NPC):
 class rusty(NPC):
     def __init__(self):
         self.name = "Rusty"
-        self.description = self.build_description()
+        self.description = self.description()
         self.dialogue = self.show_dialogue()
         self.met = False
         self.quest_finished = False
@@ -51,7 +51,7 @@ class rusty(NPC):
         self.met = True
         self.inventory = [items.map()]
         
-    def build_description(self):
+    def description(self):
         #description can depend on whether or not you've already met the npc
         if self.met:
             print("It's Rusty, your new friend")
@@ -89,7 +89,7 @@ class rusty(NPC):
 class coworker(NPC):
     def __init__(self):
         self.name = "Human's Coworker"
-        self.description = self.build_description()
+        self.description = self.description()
         self.dialogue = self.show_dialogue()
         self.met = False
         self.quest_finished = False
@@ -102,7 +102,7 @@ class coworker(NPC):
         self.show_dialogue()
         self.met = True
         
-    def build_description(self):
+    def description(self):
         #description can depend on whether or not you've already met the npc
         if self.met:
             print("It's another person, your human's coworker")
