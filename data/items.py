@@ -97,7 +97,7 @@ class door (Item):
         
     def description(self):
         if self.unlocked:
-            print("It's open! You can go from " + self.from_room + " to " + self.to_room)
+            print("It's open! You can go from " + self.from_room.name + " to " + self.to_room.name)
         else:
             print("It's locked")
             
@@ -110,6 +110,12 @@ class door (Item):
                 self.unlocked = True
             else:
                 print("you need a key to open this door")
+                
+    def change_room(self):
+        if self.player.current_room == self.from_room:
+            self.player.change_room(self.to_room)
+        elif self.player.current_room == self.to_room:
+            self.player.change_room(self.from_room)
         
 class herding_ball (Item):
     def __init__(self):
@@ -146,22 +152,14 @@ class key (Item):
     def __init__(self, name):
         self.name = name
         self.can_be_held = True
+        self.can_be_dropped = False
         self.actions = ["use", "unlock"]
     
     def description(self):
         print("This is a key")
-        #True is when you know what door it unlocks
-        # if self.touched:
-        #     print("This key unlocks the " + self.unlocks)
-        # else:
-        #     print("This is a key")
-            
+
     def interact(self):
         print("This is a key, use it to unlock a door...")
-        # if self.touched:
-        #     print("This is a key")
-        # else:
-        #     print("This key unlocks the " + self.unlocks)
             
             
     def update(self):
@@ -280,6 +278,36 @@ class water (Item):
         print("You take a long drink")
 
 #Phase 2 Items
+class gate (Item):
+    def __init__(self, player, to_room, from_room):
+        self.name = "gate"
+        self.can_be_held = False
+        self.player = player
+        self.from_room = from_room
+        self.to_room = to_room
+        self.actions = ["enter", "go through", "open"]
+        
+    def description(self):
+        print("it's a gate between the " + self.from_room + " and " + self.to_room)
+        print("enter this gate to go to " + self.to_room)
+            
+    def interact(self):
+        while():
+            print("Do you want to go through this gate to " + self.to_room + "? y/n?")
+            choice = input()
+            if choice == "y":
+                return True
+            elif choice == "n":
+                return False
+            else:
+                print("Try again:")
+                
+    def change_room(self):
+        if self.player.current_room == self.from_room:
+            self.player.change_room(self.to_room)
+        elif self.player.current_room == self.to_room:
+            self.player.change_room(self.from_room)
+        
 class shovel (Item):
     def __init__(self):
         self.name = "shovel"
@@ -295,6 +323,7 @@ class shovel (Item):
 
     def interact(self):
         print("You test out the shovel's sand scooping abilities.")
+        print("Yep, pretty good")
 
 class bucket (Item):
     def __init__(self):

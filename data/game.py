@@ -40,7 +40,7 @@ class Game:
         pickle.dump(self, file_name)
         fp.close()
         
-     def new_game(self):
+    def new_game(self):
         return "new game"
         #start a new phase
         

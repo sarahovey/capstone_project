@@ -13,24 +13,23 @@ class Player:
         item.description()
         
     def go(self, landmark):
-        #go to an item or door
-        #if a door, will try to unlock it
-        #if an item, then print the description
-        print("go towards a landmark")
-        #see if it's an item, npc, room/door
-        #beeline straight to room if its in this phase
-        #if its an object "what do you want to do? investigate, take?"
-        #
+        if landmark.name == "door" or landmark.name == "gate":
+            landmark.change_room()
+        else:
+            landmark.description()
         
     def take(self, item):
-        #base action
-        print("take an item")
-        if "saddlebags" not in self.inventory:
-            print("you don't have anything to hold that with!")
+        # if "saddlebags" not in self.inventory:
+        #     print("you don't have anything to hold that with!")
         if item.can_be_held is False:
             print("you can't pick it up")
             
         self.inventory.append(item)
+        
+    def doors(self):
+        print("You are in " + self.current_room)
+        for door in self.current_room:
+            print("There is a door between " + door.from_room + " and " + door.to_room + "\n")
         
     def help(self):
         #print help messages from xml file
