@@ -1,4 +1,5 @@
 import items
+import npcs
 
 #Room parent class
 class Room:
@@ -20,6 +21,8 @@ class living_room(Room):
         self.items = []
         self.load_items()
         self.npcs = self.load_npcs()
+        self.doors = []
+        self.original_room = True #denotes position in hub and spoke network of rooms in each phase
         
     def load_items(self):
         kitchen_key = items.key("kitchen")
@@ -40,6 +43,14 @@ class living_room(Room):
         room_description = ""
         for item in self.items:
             room_description+= preface + item.name + ". " + item.description() + " \n"
+            
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for door in self.doors:
+            room_description += "a door to " + door.to_room + " \n"
+            
         print(room_description)
         
     def short_description(self):
@@ -73,11 +84,13 @@ class living_room(Room):
             self.enter_room()
         
 class back_yard(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
-
+        self.entered = False
+        self.doors = []
+        self.original_room = False
+        
     def load_items(self):
         hose = items.hose()
         pool = items.kiddie_pool()
@@ -88,11 +101,30 @@ class back_yard(Room):
     def load_npcs(self):
         self.npcs = []
         
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room + " \n"
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the back yard")
+        
 class kitchen(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.doors = []
+        self.original_room = False
         
     def load_items(self):
         #Key to office
@@ -107,11 +139,31 @@ class kitchen(Room):
     def load_npcs(self):
         self.npcs = []
         
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room + " \n"
+            
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the kitchen")
+        
 class office(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.doors = []
+        self.original_room = False
         
     def load_items(self):
         key_to_bedroom = items.key("bedroom")
@@ -122,11 +174,31 @@ class office(Room):
     def load_npcs(self):
         self.npcs = []
         
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room + " \n"
+            
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the office")
+        
 class bedroom(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = ""
+        self.entered = False
+        self.doors = []
+        self.original_room = False
         
     def load_items(self):
         saddlebags = items.saddlebags(self.player)
@@ -136,19 +208,38 @@ class bedroom(Room):
     def load_npcs(self):
         self.npcs = []
         
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room + " \n"
+            
+        print(room_description)
+        
+    def short_description(self):
+        print("you are in the bedroom")
+        
 #Phase 2 rooms
 class sand_pit(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = True
+        self.gates = []
     
     def load_items(self):
         shovel = items.shovel()
         bucket = items.bucket()
-        sand = items.sand()
         
-        self.items = [shovel, bucket, sand]
+        self.items = [shovel, bucket]
     
     def load_npcs(self):
         self.npcs = []
@@ -156,80 +247,89 @@ class sand_pit(Room):
     def long_description(self):
         #This builds a long description of all items and their states
         preface = "You see a "
-            room_description = ""
-            for item in self.items:
-                room_description+= preface + item.name + ". " + item.description() + " \n"
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for gate in self.gates:
+            room_description += "a gate to " + gate.from_room + " \n"
+            
         print(room_description)
     
     def short_description(self):
         print("You entered the Sand Box! It is nice and soft in here")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-        
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-    
             self.entered = True
 
-    def check_room_state(self):
-
 class open_grass(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.gates = []
     
     def load_items(self):
         frisbee = items.frisbee()
         soccer_ball = items.soccer_ball()
         tennis_ball = items.tennis_ball()
+        squeaky_toy = items.squeaky_toy()
+        stick = items.stick()
     
-        self.items = [frisbee, soccer_ball, tennis_ball]
+        self.items = [frisbee, soccer_ball, tennis_ball, squeaky_toy, stick]
     
     def load_npcs(self):
         self.npcs = []
-    
+        
     def long_description(self):
         #This builds a long description of all items and their states
         preface = "You see a "
         room_description = ""
         for item in self.items:
             room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for gate in self.gates:
+            room_description += "a gate to " + gate.to_room + " \n"
+            
         print(room_description)
     
     def short_description(self):
         print("You find yourself in a big open field of grass!")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-        
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-    
             self.entered = True
 
-    def check_room_state(self):
-
 class agility_course(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.gates = []
     
     def load_items(self):
-    #mmmm unsure what items we want here
-    
+        water_bowl = items.water()
+        kibbles = items.kibble()
+        self.items = [water_bowl, kibbles]
+        
     def load_npcs(self):
-        self.npcs = []
+        rusty = npcs.rusty()
+        self.npcs = [rusty]
     
     def long_description(self):
         #This builds a long description of all items and their states
@@ -237,30 +337,31 @@ class agility_course(Room):
         room_description = ""
         for item in self.items:
             room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for gate in self.gates:
+            room_description += "a gate to " + gate.from_room + " \n"
+            
         print(room_description)
     
     def short_description(self):
         print("You are at the agility course!")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-        
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-    
             self.entered = True
-
-    def check_room_state(self):
-
 class dog_pool(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.gates = []
     
     def load_items(self):
         floaty = items.floaty()
@@ -279,36 +380,79 @@ class dog_pool(Room):
         room_description = ""
         for item in self.items:
             room_description+= preface + item.name + ". " + item.description() + " \n"
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+        room_description += "You also see \n"
+        for gate in self.gates:
+            room_description += "a gate to " + gate.from_room + " \n"
         print(room_description)
     
     def short_description(self):
         print("You find yourself at the edge of the dog pool. Good thing you know how to swim.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-        
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-    
             self.entered = True
-
-    def check_room_state(self):
-
-#Phase 3 Rooms
-class office_entrance(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+            
+class shady_grove(Room):
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.gates = []
+    
+    def load_items(self):
+        stick = items.stick()
+        tennis_ball = items.tennis_ball()
+        water = items.water()
+        
+        self.items = [stick, water, tennis_ball]
+    
+    def load_npcs(self):
+        self.npcs = []
+    
+    def long_description(self):
+        #This builds a long description of all items and their states
+        preface = "You see a "
+        room_description = ""
+        for item in self.items:
+            room_description+= preface + item.name + ". " + item.description() + " \n"
+            
+        for npc in self.npcs:
+            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            
+        room_description += "You also see \n"
+        for gate in self.gates:
+            room_description += "a gate to " + gate.from_room + " \n"
+        print(room_description)
+    
+    def short_description(self):
+        print("You find yourself at the edge of the dog pool. Good thing you know how to swim.")
+    
+    def enter_room(self):
+        if self.entered:
+            self.short_description()
+        else:
+            self.long_description()
+            self.entered = True
+
+#Phase 3 Rooms
+class lobby(Room):
+    def __init__(self):
+        self.items = self.load_items()
+        self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = True
+        self.doors = []
 
     def load_items(self):
-        pad_lock = items.pad_lock()
-        door_mat = items.door_mat()
-        office_key = items.office_key()
+        plant = items.plant()
+        chair = items.chair()
+        magazine = items.magazine()
 
         self.items = [plant, chair, magazine]
 
@@ -321,30 +465,26 @@ class office_entrance(Room):
         room_description = ""
         for item in self.items:
             room_description+= preface + item.name + ". " + item.description() + " \n"
+            
         print(room_description)
 
     def short_description(self):
             print("You stumble upon the entrance of an office. Maybe your owner is here!")
 
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-    
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
 
-    def check_room_state(self):
-
 class break_room(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.doors = []
 
     def load_items(self):
         snacks = items.snacks()
@@ -368,24 +508,19 @@ class break_room(Room):
         print("This looks like the breakroom, the perfect place to find snacks lying around.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
 
-    def check_room_state(self):
-
 class supply_closet(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.doors = []
     
     def load_items(self):
         vacuum = items.vacuum()
@@ -409,31 +544,27 @@ class supply_closet(Room):
         print("You stumble upon the supply closet. Everything useful is stored here.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
-    
-    def check_room_state(self):
 
-class lobby(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+class common_area(Room):
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.doors = []
     
     def load_items(self):
         plant = items.plant()
         chair = items.chair()
         magazine = items.magazine()
+        couch = items.couch()
         
-        self.items = [plant, chair, magazine]
+        self.items = [plant, chair, magazine, couch]
     
     def load_npcs(self):
         self.npcs = []
@@ -450,25 +581,19 @@ class lobby(Room):
         print("You find yourself in the lobby. It's quiet... too quiet.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
-    
-    def check_room_state(self):
-
 
 class cubicle(Room):
-    def __init__(self, connected_rooms):
-        self.connected_rooms = connected_rooms
+    def __init__(self):
         self.items = self.load_items()
         self.npcs = self.load_npcs()
+        self.entered = False
+        self.original_room = False
+        self.doors = []
     
     def load_items(self):
         computer = items.computer()
@@ -479,7 +604,8 @@ class cubicle(Room):
         self.items = [computer, trash_can, office_chair, notebook]
     
     def load_npcs(self):
-        self.npcs = []
+        coworker = npcs.coworker()
+        self.npcs = [coworker]
     
     def long_description(self):
         #This builds a long description of all items and their states
@@ -493,16 +619,8 @@ class cubicle(Room):
         print("You stumble upon the supply closet. Everything useful is stored here.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
-    
-    def check_room_state(self):
-
