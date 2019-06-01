@@ -472,15 +472,10 @@ class lobby(Room):
             print("You stumble upon the entrance of an office. Maybe your owner is here!")
 
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-    
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
 
 class break_room(Room):
@@ -513,15 +508,10 @@ class break_room(Room):
         print("This looks like the breakroom, the perfect place to find snacks lying around.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
 
 class supply_closet(Room):
@@ -554,15 +544,10 @@ class supply_closet(Room):
         print("You stumble upon the supply closet. Everything useful is stored here.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
 
 class common_area(Room):
@@ -596,15 +581,10 @@ class common_area(Room):
         print("You find yourself in the lobby. It's quiet... too quiet.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
-        
             self.entered = True
 
 class cubicle(Room):
@@ -639,12 +619,8 @@ class cubicle(Room):
         print("You stumble upon the supply closet. Everything useful is stored here.")
     
     def enter_room(self):
-        if self.entered == False:
-            filepath = 'intro_flavor.txt'
-            with open(filepath) as fp:
-                for line in fp:
-                    print(line)
-                    input()
-            
+        if self.entered:
+            self.short_description()
+        else:
             self.long_description()
             self.entered = True
