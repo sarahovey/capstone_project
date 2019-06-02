@@ -18,10 +18,12 @@ class Action:
 class bite(Action):
         def __init_(self):
         self.name = "bite"
-        # self.can_be_held = False]
+        # self.can_be_held = Falsex]
         self.touched = False
     def description(self):
         if self.touched is False:
-            return "its a stick! yayy!!!"
+            return "you bite!"
         else self.touched is True:
-            return "this is your favorite stick now."
+            return "you bit someone
+#rand() number to generate a number to do damage
+#fend off some bad guy in the game

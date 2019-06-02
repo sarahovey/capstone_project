@@ -11,10 +11,6 @@ class Phase1:
         self.make_player()
         self.rooms = self.make_rooms()
         
-        
-    def make_player(self):
-        self.player = player.Player()
-        
     def make_rooms(self):
         living_room = rooms.living_room(self.player)
         self.rooms = [living_room]
