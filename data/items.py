@@ -18,7 +18,37 @@ class Item:
             print("unaltered")
             
        
-#Item child classes
+class phase_door(Item):
+    def __init__(self, player, to_phase, message):
+        self.player = player
+        self.to_phase = to_phase
+        self.message = message
+        self.actions = ["go", "enter", "open"]
+        
+    def start_next_phase(self):
+        #are you sure?
+        while():
+            print(self.message)
+            choice = input()
+            if choice == "y":
+                return True
+            elif choice == "n":
+                return False
+            else:
+                print("Try again:")
+                
+        if self.to_phase is not None:
+            self.to_phase.start_phase()
+        elif self.to_phase is None:
+            #show ending cutscene
+            filepath = 'phase3_ending.txt' 
+            with open(filepath) as fp: 
+                for line in fp:
+                    print(line)
+                    input()
+                    exit()
+        
+#phase 1 items
 class bed (Item):
     def __init__(self):
         self.name = "bed"
@@ -469,6 +499,7 @@ class map (Item):
         self.can_be_held = True
         self.actions = ["read", "open"]
         self.touched = False
+        self.phase_door = "" #this gets populated
     
     def description(self):
         print("A map to the office your human works at")

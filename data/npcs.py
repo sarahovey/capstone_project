@@ -42,6 +42,7 @@ class rusty(NPC):
         self.met = False
         self.quest_finished = False
         self.concluded_quest = False #this means the npc has acknowledged the quest ended
+        self.inventory = []
         
     def interact(self):
         #call this when the player meets the npc
@@ -49,7 +50,6 @@ class rusty(NPC):
         #update accordingly
         self.show_dialogue()
         self.met = True
-        self.inventory = [items.map()]
         
     def description(self):
         #description can depend on whether or not you've already met the npc
@@ -77,7 +77,7 @@ class rusty(NPC):
                     print("Can we trade for this map I have? I think it would help you find your hooman's work")
                     input()
                     print("[The map has been added to your inventory!]")
-                    self.player.inventory.append()
+                    self.player.inventory.append(self.inventory[0])
                     self.concluded_quest = True
             else:
                 print("If you manage to find a fun toy I could play with, could you bring it to me please?")
@@ -94,6 +94,7 @@ class coworker(NPC):
         self.met = False
         self.quest_finished = False
         self.concluded_quest = False #this means the npc has acknowledged the quest ended
+        self.inventory = []
         
     def interact(self):
         #call this when the player meets the npc
@@ -113,5 +114,6 @@ class coworker(NPC):
         print("Hey buddy, are you lost? I'll look at your tags")
         print(".....")
         print("I know your person! I'll take you to them, let's go!")
+        self.inventory[0].start_next_phase()
         input()
-        #print out closing cutscene dialog
+        
