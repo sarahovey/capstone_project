@@ -59,15 +59,6 @@ class living_room(Room):
         
     def enter_room(self):
         if self.entered == False:
-            #show game starting text, hacky to put it here but w/e
-            # print("The sun gently shines through the curtains, waking you up.")
-            # print("hit enter to start playing")
-            filepath = 'intro_flavor.txt' 
-            with open(filepath) as fp: 
-                for line in fp:
-                    print(line)
-                    input()
-            #long description
             self.long_description()
             #set the enter flag
             self.entered = True
@@ -82,6 +73,7 @@ class living_room(Room):
         print("for example, is there a new npc here? have we enterd this room before?")
         if not self.entered:
             self.enter_room()
+            
         
 class back_yard(Room):
     def __init__(self):
@@ -117,6 +109,13 @@ class back_yard(Room):
         
     def short_description(self):
         print("you are in the back yard")
+        
+    def enter_room(self):
+        if self.entered:
+            self.short_description()
+        else:
+            self.long_description()
+            self.entered = True
         
 class kitchen(Room):
     def __init__(self):
@@ -157,6 +156,13 @@ class kitchen(Room):
     def short_description(self):
         print("you are in the kitchen")
         
+    def enter_room(self):
+        if self.entered:
+            self.short_description()
+        else:
+            self.long_description()
+            self.entered = True
+        
 class office(Room):
     def __init__(self):
         self.items = self.load_items()
@@ -192,6 +198,13 @@ class office(Room):
     def short_description(self):
         print("you are in the office")
         
+    def enter_room(self):
+        if self.entered:
+            self.short_description()
+        else:
+            self.long_description()
+            self.entered = True
+        
 class bedroom(Room):
     def __init__(self):
         self.items = self.load_items()
@@ -225,6 +238,13 @@ class bedroom(Room):
         
     def short_description(self):
         print("you are in the bedroom")
+        
+    def enter_room(self):
+        if self.entered:
+            self.short_description()
+        else:
+            self.long_description()
+            self.entered = True
         
 #Phase 2 rooms
 class sand_pit(Room):
