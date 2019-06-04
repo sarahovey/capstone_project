@@ -8,8 +8,10 @@ class Phase1:
     def __init__(self, player):
         self.name = "Phase 1"
         self.player = player
-        self.rooms = self.make_rooms()
         self.spawn_point = ""
+        self.rooms = []
+        self.make_rooms()
+        
         
     def start_phase(self):
         #set current phase and room
@@ -17,32 +19,33 @@ class Phase1:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'phase1_starting_flavor.txt' 
+        filepath = 'data/phase1_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)
                 input()
+                
+        self.player.current_room.enter_room()
         
     def make_rooms(self):
         living_room = rooms.living_room(self.player)
         self.rooms = [living_room]
-        #self.player.change_room(living_room)
-        self.player.current_room.enter_room()
+        #self.player.current_room.enter_room()
         
-        kitchen = rooms.kitchen()
+        kitchen = rooms.kitchen(self.player)
         kitchen_door = items.door(self.player, "kitchen key", living_room, kitchen)
         kitchen.doors = [kitchen_door]
         
-        back_yard = rooms.back_yard()
+        back_yard = rooms.back_yard(self.player)
         back_yard_door = items.door(self.player, "none", living_room, back_yard)
         back_yard.doors = [back_yard_door]
         
         
-        bedroom = rooms.bedroom()
+        bedroom = rooms.bedroom(self.player)
         bedroom_door = items.door(self.player, "bedroom_key", living_room, bedroom)
         bedroom.doors = [bedroom_door]
         
-        office = rooms.office()
+        office = rooms.office(self.player)
         office_door = items.door(self.player, "office key", living_room, office)
         office.doors = [office_door]
 
@@ -58,7 +61,8 @@ class Phase2:
     def __init__(self, player):
         self.name = "Phase 2"
         self.player = player
-        self.rooms = self.make_rooms()
+        self.rooms = []
+        self.make_rooms()
         self.spawn_point = ""
         
         
@@ -75,21 +79,21 @@ class Phase2:
                 input()
                 
     def make_rooms(self):
-        open_grass = rooms.open_grass()
+        open_grass = rooms.open_grass(self.player)
         
-        sand_pit = rooms.sand_pit()
+        sand_pit = rooms.sand_pit(self.player)
         sand_pit_gate = items.gate(self.player, sand_pit, open_grass)
         sand_pit.gates = [sand_pit_gate]
         
-        agility_course = rooms.agility_course()
+        agility_course = rooms.agility_course(self.player)
         agility_course_gate = items.gate(self.player, agility_course, open_grass)
         agility_course.gates = [agility_course_gate]
         
-        dog_pool = rooms.dog_pool()
+        dog_pool = rooms.dog_pool(self.player)
         dog_pool_gate = items.gate(self.player, dog_pool, open_grass)
         dog_pool.gates = [dog_pool_gate]
         
-        shady_grove = rooms.shady_grove()
+        shady_grove = rooms.shady_grove(self.player)
         shady_grove_gate = items.gate(self.player, shady_grove, open_grass)
         shady_grove.gates = [shady_grove_gate]
         
@@ -102,7 +106,8 @@ class Phase3:
     def __init__(self, player):
         self.name = "Phase 3"
         self.player = player
-        self.rooms = self.make_rooms()
+        self.rooms = []
+        self.make_rooms()
         self.spawn_point = ""
         
     def start_phase(self):
@@ -117,21 +122,21 @@ class Phase3:
                 print(line)
                 input()
     def make_rooms(self):
-        lobby = rooms.lobby()
+        lobby = rooms.lobby(self.player)
         
-        cubicle = rooms.cubicle()
+        cubicle = rooms.cubicle(self.player)
         cubicle_door = items.gate(self.player, lobby, cubicle)
         cubicle.doors = [cubicle_door]
         
-        break_room = rooms.break_room()
+        break_room = rooms.break_room(self.player)
         break_room_door = items.gate(self.player, lobby, break_room)
         break_room.doors = [break_room_door]
         
-        supply_closet = rooms.supply_closet()
+        supply_closet = rooms.supply_closet(self.player)
         supply_closet_door = items.gate(self.player, lobby, break_room)
         supply_closet.doors = [supply_closet_door]
         
-        common_area = rooms.common_area()
+        common_area = rooms.common_area(self.player)
         common_area_door = items.gate(self.player, lobby, common_area)
         common_area.doors = [common_area_door]
         

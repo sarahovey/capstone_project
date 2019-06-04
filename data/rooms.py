@@ -20,12 +20,13 @@ class living_room(Room):
         self.entered = False
         self.items = []
         self.load_items()
-        self.npcs = self.load_npcs()
+        self.npcs = []
+        self.load_npcs()
         self.doors = []
         self.original_room = True #denotes position in hub and spoke network of rooms in each phase
         
     def load_items(self):
-        kitchen_key = items.key("kitchen")
+        #kitchen_key = items.key("kitchen")
         couch = items.couch()
         tennis_ball = items.tennis_ball()
         blanket = items.blanket()
@@ -39,17 +40,24 @@ class living_room(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
+            #something is failing while building this string
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
-            
-        room_description += "You also see \n"
+        room_description += "\nYou also see \n"
         for door in self.doors:
-            room_description += "a door to " + door.to_room + " \n"
+            #print(door.name)
+            if door.name == "front door":
+                room_description += "the front door, outside it lies.... the whole world!"
+            else:
+                room_description += "a door to the " + door.to_room.name + " \n"
             
         print(room_description)
         
@@ -58,25 +66,15 @@ class living_room(Room):
         print("You are in the living room")
         
     def enter_room(self):
-        if self.entered == False:
+        if self.entered:
             self.long_description()
-            #set the enter flag
+        else:
+            self.long_description()
             self.entered = True
-        #check for any conditional npcs, items, etc related to the first time entering
-            #long description, etc
-        
-        
-    def check_room_state(self):
-        #this will be fleshed out later, it will be useful for rooms where npcs move around
-        #and things change
-        print("check to see if something is new in the room that needs to be shown to the player")
-        print("for example, is there a new npc here? have we enterd this room before?")
-        if not self.entered:
-            self.enter_room()
-            
-        
+
 class back_yard(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "Back yard"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -118,7 +116,8 @@ class back_yard(Room):
             self.entered = True
         
 class kitchen(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "Kitchen"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -164,7 +163,8 @@ class kitchen(Room):
             self.entered = True
         
 class office(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "Office"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -206,7 +206,8 @@ class office(Room):
             self.entered = True
         
 class bedroom(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "bedroom"
         self.items = self.load_items()
         self.npcs = ""
         self.entered = False
@@ -214,9 +215,9 @@ class bedroom(Room):
         self.original_room = False
         
     def load_items(self):
-        saddlebags = items.saddlebags(self.player)
+        #saddlebags = items.saddlebags(self.player)
         bed = items.bed()
-        self.items = [saddlebags, bed]
+        self.items = [bed]
         
     def load_npcs(self):
         self.npcs = []
@@ -248,7 +249,8 @@ class bedroom(Room):
         
 #Phase 2 rooms
 class sand_pit(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "Sand pit"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -290,7 +292,8 @@ class sand_pit(Room):
             self.entered = True
 
 class open_grass(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "Open grass"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -335,9 +338,12 @@ class open_grass(Room):
             self.entered = True
 
 class agility_course(Room):
-    def __init__(self):
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+    def __init__(self, player):
+        self.name = "agility course"
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        self.load_npcs()
         self.entered = False
         self.original_room = False
         self.gates = []
@@ -349,7 +355,9 @@ class agility_course(Room):
         
     def load_npcs(self):
         rusty = npcs.rusty()
+        rusty.inventory.append(items.map())
         self.npcs = [rusty]
+        
     
     def long_description(self):
         #This builds a long description of all items and their states
@@ -358,7 +366,7 @@ class agility_course(Room):
         for item in self.items:
             room_description+= preface + item.name + ". " + item.description() + " \n"
         for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            room_description+= preface + npc.name + ". " + npc.description() + " \n"
             
         room_description += "You also see \n"
         for gate in self.gates:
@@ -376,7 +384,8 @@ class agility_course(Room):
             self.long_description()
             self.entered = True
 class dog_pool(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "dog pool"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -418,7 +427,8 @@ class dog_pool(Room):
             self.entered = True
             
 class shady_grove(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "shady grove"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -451,7 +461,7 @@ class shady_grove(Room):
         print(room_description)
     
     def short_description(self):
-        print("You find yourself at the edge of the dog pool. Good thing you know how to swim.")
+        print("A shady grove of trees and grass.")
     
     def enter_room(self):
         if self.entered:
@@ -462,7 +472,8 @@ class shady_grove(Room):
 
 #Phase 3 Rooms
 class lobby(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "Lobby"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -499,7 +510,8 @@ class lobby(Room):
             self.entered = True
 
 class break_room(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "Break room"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -535,7 +547,8 @@ class break_room(Room):
             self.entered = True
 
 class supply_closet(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "supply closet"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -571,7 +584,8 @@ class supply_closet(Room):
             self.entered = True
 
 class common_area(Room):
-    def __init__(self):
+    def __init__(self, player):
+        self.name = "common area"
         self.items = self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
@@ -608,9 +622,13 @@ class common_area(Room):
             self.entered = True
 
 class cubicle(Room):
-    def __init__(self):
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+    def __init__(self, player):
+        self.name = "cubicle"
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        print("loading npcs from cubible")
+        self.load_npcs()
         self.entered = False
         self.original_room = False
         self.doors = []
@@ -632,7 +650,8 @@ class cubicle(Room):
         preface = "You see a "
         room_description = ""
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
+            print(item)
+            #room_description+= preface + item.name + ". " + item.description() + " \n"
         print(room_description)
     
     def short_description(self):
