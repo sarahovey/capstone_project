@@ -37,8 +37,6 @@ class cat(NPC):
 class rusty(NPC):
     def __init__(self):
         self.name = "Rusty"
-        self.description = self.description()
-        self.dialogue = self.show_dialogue()
         self.met = False
         self.quest_finished = False
         self.concluded_quest = False #this means the npc has acknowledged the quest ended
@@ -53,7 +51,7 @@ class rusty(NPC):
         
     def description(self):
         #description can depend on whether or not you've already met the npc
-        if self.met:
+        if self.met == True:
             print("It's Rusty, your new friend")
         else:
             print("Another Cattle Dog, big and red. Maybe a new friend?")
@@ -89,8 +87,6 @@ class rusty(NPC):
 class coworker(NPC):
     def __init__(self):
         self.name = "Human's Coworker"
-        self.description = self.description()
-        self.dialogue = self.show_dialogue()
         self.met = False
         self.quest_finished = False
         self.concluded_quest = False #this means the npc has acknowledged the quest ended

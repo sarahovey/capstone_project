@@ -60,11 +60,42 @@ class Player:
         #should refactor this to define a list of synonyms for each player action
         if action == "look":
             self.look_around()
+        elif action == "inventory":
+            print("")
+        elif action == "help" :
+            print("some help messages")
             
-    def interact(self, obj, action):
-        print("you interacted with an object")
-        #check if object is an item or npc
-        #check if action is a player action
+            
+    def check_if_item(self, object):
+        target
+        for item in current_room.items:
+            if item.name == object:
+                target = item
+                
+        return target
+                
+    def check_if_npc(self, object):
+        target
+        for npc in current_room.npcs:
+            if npc.name == object:
+                target = npc
+        return target
+                
+    def interact(self, action, object):
+        target = self.check_if_item()
+        if target is None:
+            target = self.check_if_npc()
+        if target is None:
+            print("I didn't understand what you wanted to do")
+            
+        target.interact()
+            
+        
+        
+        
+        
+            
+        
         
         print("interact with an item, is it a room, object, or npc?")
         print("return -1 if nothing can be done on the current room, some object, or npc")

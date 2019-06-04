@@ -19,11 +19,16 @@ class Item:
             
        
 class phase_door(Item):
-    def __init__(self, player, to_phase, message):
+    def __init__(self, player, to_phase, message, name, description_string):
+        self.name = name
         self.player = player
         self.to_phase = to_phase
         self.message = message
-        self.actions = ["go", "enter", "open"]
+        self.actions = ["go", "go to" "enter", "open"]
+        self.description_string = description_string
+        
+    def description(self):
+        print(self.description_string)
         
     def start_next_phase(self):
         #are you sure?
@@ -73,8 +78,6 @@ class blanket (Item):
             return "A warm blanket, unfolded on the floor."
         else:
             return "A warm blanket, perfect on cold nights. Neatly folded."
-
-            
             
     def interact(self):
         if self.touched is False:
@@ -327,7 +330,6 @@ class gate (Item):
             choice = input()
             if choice == "y":
                 return True
-            elif choice == "n":
                 return False
             else:
                 print("Try again:")
