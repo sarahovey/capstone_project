@@ -1,3 +1,7 @@
+import items
+import npcs
+import rooms
+
 command = input().split(" ")
 
 if command >= 4:
