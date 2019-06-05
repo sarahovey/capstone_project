@@ -18,14 +18,6 @@ class Player:
         else:
             landmark.description()
         
-    def take(self, item):
-        # if "saddlebags" not in self.inventory:
-        #     print("you don't have anything to hold that with!")
-        if item.can_be_held is False:
-            print("you can't pick it up")
-            
-        self.inventory.append(item)
-        
     def doors(self):
         print("You are in " + self.current_room)
         for door in self.current_room:
@@ -39,6 +31,9 @@ class Player:
         for item in self.inventory:
             print(item.name)
             print(item.description)
+            
+    def help(self):
+        print("help messages")
             
     #Get a list of item names (strings) to see if the player has one or mroe in inventory
     def find_item(self, items):
@@ -55,28 +50,30 @@ class Player:
         self.current_room = new_room
         self.current_room.long_description()
         
+    #Single word actions
     def action(self, action):
-        print("you took an action")
-        #should refactor this to define a list of synonyms for each player action
         if action == "look":
             self.look_around()
         elif action == "inventory":
-            print("")
+            self.check_inventory()
         elif action == "help" :
-            print("some help messages")
+            self.help()
         else:
             print("you tried to hard...")
                
+    #Interaction with an npc
     def interact_npc(self, npc):
         for person in self.current_room:
             if person.name == npc:
                 person.interact()
-                
+          
+    #Interaction with a door, trying to enter, unlock, etc      
     def interact_door(self, target_door):
         for door in self.current_room.doors:
             if door.name = target_door:
                 door.interact()
-                
+            
+    #Dropping or using an item in inventory    
     def interact_inventory(self, action, obj):
         if action == "drop":
             #check inventory for the item to drop
@@ -94,6 +91,7 @@ class Player:
         else:
             print("That item isn't in your inventory, you can't use or drop it!")
         
+    #Interacting with an item in the room
     def interact_item(self, action, obj):
         for item in self.current_room.items:
             if item.name == obj:
@@ -103,10 +101,4 @@ class Player:
                     if word == action:
                         item.interact()
         
-    def save_game(self):
-        print("saving")
-        
-    def load_game(self):
-        print("loading")
-
         

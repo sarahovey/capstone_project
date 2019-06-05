@@ -1,0 +1,4 @@
+~Helper~
+-look [item]: closely inspect an item
+-look around: get a desription of what you can see
+-
