@@ -214,7 +214,7 @@ class kiddie_pool (Item):
         
 class kibble (Item):
     def __init__(self):
-        self.name = "bowl of kibble"
+        self.name = "kibble bowl"
         self.can_be_held = False
         self.actions = ["eat", "nom"]
         self.touched = False

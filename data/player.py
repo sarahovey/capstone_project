@@ -3,7 +3,7 @@ class Player:
     def __init__(self):
         self.name = "player"
         self.inventory = []
-        self.current_room = rooms.living_room
+        self.current_room = None
         
     def look_around(self):
         self.current_room.long_description()
@@ -22,14 +22,13 @@ class Player:
         for door in self.current_room:
             print("There is a door between " + door.from_room + " and " + door.to_room + "\n")
         
-    def help(self):
-        #print help messages from xml file
-        return "help messages"
-        
     def check_inventory(self):
+        if len(self.inventory) == 0:
+            print("Your saddlebags are empty!")
+            
         for item in self.inventory:
             print(item.name)
-            print(item.description)
+            print(item.description())
             
     def help(self):
         print("help messages")
@@ -41,9 +40,17 @@ class Player:
                 return True
             else:
                 return False
-            
-    def save(self, player):
-        print("saving the game...")
+    def quit(self):
+        quit = None
+        while quit is None:
+            print("are you sure? y/n")
+            command = input()
+            if command == 'y':
+                exit()
+            elif command == 'n':
+                return
+            else:
+                print("try y or n ")
         
     def change_room(self, new_room):
         self.current_room = new_room
@@ -57,20 +64,34 @@ class Player:
             self.check_inventory()
         elif action == "help" :
             self.help()
+        elif action == "exit" or action == "quit":
+            self.quit()
         else:
             print("you tried to hard...")
                
     #Interaction with an npc
     def interact_npc(self, npc):
-        for person in self.current_room:
-            if person.name == npc:
-                person.interact()
+        if len(self.current_room.npcs) >= 1: 
+            for person in self.current_room:
+                if person.name == npc:
+                    person.interact()
+                    return
+            #here we can assume that no npc by that name was found
+            print("That person isn't in here!")
+            
+        else:
+            print("There's no one here....")
           
     #Interaction with a door, trying to enter, unlock, etc      
     def interact_door(self, target_door):
-        for door in self.current_room.doors:
-            if door.name = target_door:
-                door.interact()
+        if hasattr(self.current_room, 'doors'):
+            for door in self.current_room.doors:
+                if door.name == target_door:
+                    door.interact()
+        if hasattr(self.current_room, 'gates'):
+            for gate in self.current_room.gates: #<- gates here
+                if gate.name == target_door:
+                    gate.interact()
             
     #Dropping or using an item in inventory    
     def interact_inventory(self, action, obj):
@@ -92,12 +113,41 @@ class Player:
         
     #Interacting with an item in the room
     def interact_item(self, action, obj):
+        found_action = False
+        found_item = False
         for item in self.current_room.items:
+            #Look for the item in the current room
             if item.name == obj:
+                #We have found the item by name in the room
+                found_item = True
+                
+                #Try taking an item
                 if action == "take":
-                    self.inventory.append(item)
-                for word in item.actions:
-                    if word == action:
-                        item.interact()
+                    if item.can_be_held is True:
+                        self.inventory.append(item)
+                        print("You added the item to your inventory~")
+                        found_action == True
+                        #found_item == False
+                    else:
+                        print("You can't hold that! >:(")
+                    return
+                        
+       #We can assume that the item does not exist in the room
+        if found_item is False: #and found_action is not False:
+            print("that's not a real thing!")
+            return
+        
+        #Once we have found the item, we can see if it has that action on it
+        for word in item.actions:
+            if word == action:
+                item.interact()
+                found_action == True
+                #found_item = False
+                    
+        #we can assume that that action does not apply to the item that was found
+        if found_action is False and found_item is not False:
+            print("You can't doooo that!")
+                        
+        
         
         

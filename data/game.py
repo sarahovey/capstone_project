@@ -59,6 +59,6 @@ class Game:
         
     #2+ word command to interact with an item
     def player_item_interaction(self, action, object):
-        self.player.interact_item(object, action)
+        self.player.interact_item(action, object)
         
     
