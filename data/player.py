@@ -64,41 +64,44 @@ class Player:
             print("")
         elif action == "help" :
             print("some help messages")
-            
-            
-    def check_if_item(self, object):
-        target
-        for item in current_room.items:
-            if item.name == object:
-                target = item
+        else:
+            print("you tried to hard...")
+               
+    def interact_npc(self, npc):
+        for person in self.current_room:
+            if person.name == npc:
+                person.interact()
                 
-        return target
+    def interact_door(self, target_door):
+        for door in self.current_room.doors:
+            if door.name = target_door:
+                door.interact()
                 
-    def check_if_npc(self, object):
-        target
-        for npc in current_room.npcs:
-            if npc.name == object:
-                target = npc
-        return target
-                
-    def interact(self, action, object):
-        target = self.check_if_item()
-        if target is None:
-            target = self.check_if_npc()
-        if target is None:
-            print("I didn't understand what you wanted to do")
-            
-        target.interact()
-            
+    def interact_inventory(self, action, obj):
+        if action == "drop":
+            #check inventory for the item to drop
+            for item in self.inventory:
+                if item.name == obj:
+                    self.inventory.remove(item)
+                    self.current_room.items.append(item)
+                    print("you dropped " + obj.name)
+        #use an inventory item, 
+        #just print the desc if it exists
+        elif action == "use":
+            for item in self.inventory:
+                if item.name == obj:
+                    item.description()
+        else:
+            print("That item isn't in your inventory, you can't use or drop it!")
         
-        
-        
-        
-            
-        
-        
-        print("interact with an item, is it a room, object, or npc?")
-        print("return -1 if nothing can be done on the current room, some object, or npc")
+    def interact_item(self, action, obj):
+        for item in self.current_room.items:
+            if item.name == obj:
+                if action == "take":
+                    self.inventory.append(item)
+                for word in item.actions:
+                    if word == action:
+                        item.interact()
         
     def save_game(self):
         print("saving")
