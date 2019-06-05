@@ -43,9 +43,6 @@ elif len(command) == 3:
     print("object: " )
     print(obj)
 
-"""
-further actions 2 to 1
-"""
 elif len(command) == 2:
     action = command[0]
     for word in range(len(command)):
@@ -54,17 +51,12 @@ elif len(command) == 2:
     print(action)
     print("object:")
     print(obj)
-    
-# elif len(command) == 1:
-#     action = command[0]
-#     for word in range(len(command)):
-#         object = command[word] + " "
-        
-#     print("action:") 
-#     print(action)
-#     print("object: " )
-#     print(object)
 
+elif len(command) == 1:
+    action = command[0]
+    print("action:")
+    print(action)
+    
 #     game.player_interact(action, obj)
     
 # elif len(command) == 2:
