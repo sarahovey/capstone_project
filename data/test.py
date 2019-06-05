@@ -1,3 +1,6 @@
+import game
+game = game.game()
+
 words = "here are words"
 
 words = words.split
@@ -7,32 +10,35 @@ command = input()
 
 command = command.split()
 
-#4 words:
-#3 words: action with compount object; 'take tennis ball', 'talk to rusty', 'go to kitchen'
-#edge case: if the first word is drop, search inventory
-#if the first word is use, search inventory
-#2 words: action with single object; 'bite rope'
-#1 word: player action; inventory
-if len(command) > 4:
-    print("Too many!")
-elif len(command) == 4:
-    print("you tried too hard.... and fell over!")
+#This probably wants refactoring...
+if len(command) > 3:
+    print("too many!")
 elif len(command) == 3:
-    #edge cases: 'talk to', and 'go to'
-    action=command[0]
-    for word in range(len(command)):
-        action += command[word] + " "
-        
-    print("object: " )
-    #print(obj)
-    print("action:") 
-    print(action)
-    
-    game.player_interact(action, obj)
-    
+   #if the first two words in a 3 word command are "talk to"
+   if command[0] == "talk" and command[1] == "to":
+       npc = command[3]
+       game.player_npc_interaction(npc)
+   #if the first word in a 2+ word command is "drop" or "use"
+   if command[0] == "drop" or command[0] == "use":
+       item = "Make the 2nd and 3rd words into a string here,'tennis', 'ball' should be 'tennis ball'"
+       game.player_inventory_interaction(item)
+   
+   #if the first word in a 2+ word command is "open", "unlock", or "enter"
+   door_words = ['open', 'unlock', 'enter']
+   for word in door_words:
+       if command[0] == word:
+           door="Make the 2nd and 3rd words into a string here,'kitchen', 'door' should be 'kitchen door'"
+           game.player_door_interaction(door)
+   
+   #2+ word command to interact with an item
+   action = command[0]
+   item = "again make the 2nd and 3rd words into one string like "tennis ball""
+   game.player_item_interaction(action, item)
 elif len(command) == 2:
-    #stuff i guess
-    print("")
+    #if the first word in a 2+ word command is "open", "unlock", or "enter"
+    
+    #2+ word command to interact with an item
     
 elif len(command) == 1:
-    print("game.player_action(command)")
+    #1 word commands, like help or inventory 
+    game.player_action(command[0])

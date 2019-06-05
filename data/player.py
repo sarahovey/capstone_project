@@ -4,7 +4,6 @@ class Player:
         self.name = "player"
         self.inventory = []
         self.current_room = rooms.living_room
-        self.actions = ["look around", "take"]
         
     def look_around(self):
         self.current_room.long_description()
