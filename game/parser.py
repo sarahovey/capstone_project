@@ -6,21 +6,7 @@ import phase
 import npcs
 import items
 
-# command = input().split(" ")
-
-# if command >= 4:
-#     print("You don't know what you're doing.")
-
-# if command >= 3:
-#     if command in items
-
-# if command >= 2:
-#     if 
-
-words = "here are words"
-
-words = words.split
-
+#parser for user input below
 print("What will you do?")
 command = input()
 
@@ -56,6 +42,11 @@ elif len(command) == 2:
 elif len(command) == 1:
     action = command[0]
     print("action:")
+    print(action)
+
+elif "talk to" in command:
+    action = command[:1]
+    print("action")
     print(action)
     
 #     game.player_interact(action, obj)
