@@ -27,11 +27,14 @@ command = command.split()
 
 if len(command) > 4:
     print("Too many!")
+
 elif len(command) == 4:
     print("you tried too hard.... and fell over!")
+
 elif len(command) == 3:
     action = command[0]
     #range in for loop needs a slice notation that works to capture past the index of zero other wise eat will repeat twice
+    #I got the above but its missing the "a" in "eat a squirrel"
     for word in range(len(command)):
         obj = command[word] + " "
         
@@ -39,21 +42,28 @@ elif len(command) == 3:
     print(action)
     print("object: " )
     print(obj)
-    
+
 """
 further actions 2 to 1
 """
-
-elif len(command) == 3:
+elif len(command) == 2:
     action = command[0]
-    #range in for loop needs a slice notation that works to capture past the index of zero other wise eat will repeat twice
     for word in range(len(command)):
-        object = command[word] + " "
-        
-    print("action:") 
+        obj = command[word]
+    print("action:")
     print(action)
-    print("object: " )
-    print(object)
+    print("object:")
+    print(obj)
+    
+# elif len(command) == 1:
+#     action = command[0]
+#     for word in range(len(command)):
+#         object = command[word] + " "
+        
+#     print("action:") 
+#     print(action)
+#     print("object: " )
+#     print(object)
 
 #     game.player_interact(action, obj)
     
