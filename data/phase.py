@@ -12,14 +12,13 @@ class Phase1:
         self.rooms = []
         self.make_rooms()
         
-        
     def start_phase(self):
         #set current phase and room
         self.player.current_phase = self
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'data/phase1_starting_flavor.txt' 
+        filepath = 'phase1_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)
