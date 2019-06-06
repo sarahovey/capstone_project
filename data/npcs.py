@@ -34,8 +34,9 @@ class cat(NPC):
         print ("mrowww")
         
 class rusty(NPC):
-    def __init__(self):
+    def __init__(self, player):
         self.name = "Rusty"
+        self.player = player
         self.met = False
         self.quest_finished = False
         self.concluded_quest = False #this means the npc has acknowledged the quest ended
@@ -56,15 +57,19 @@ class rusty(NPC):
             print("Another Cattle Dog, big and red. Maybe a new friend?")
         
     def is_quest_finished(self):
+        print("checking quest")
         #Check if the player has the npc's requested item in their inventoru
-        self.quest_finished = self.player.find_item(["tennis ball", "stick", "squeaky toy"])
+        item_found = self.quest_finished = self.player.find_item(["tennis ball", "stick", "squeaky toy"])
         
+        return item_found
+      
     def show_dialogue(self):
         #check whether or not a player has a certain item
         #or has done something for the npc
         #or something else
         #that can change dialogue
         if self.met:
+            print("this npc has been met")
             if self.is_quest_finished():
                 if self.concluded_quest:
                     print("Thanks for bringing me that great toy!")

@@ -39,7 +39,7 @@ class Game:
         self.phases_list = [phase1, phase2, phase3]
         
         #changing this to help with testing, should be phase 1 here for real
-        phase2.start_phase()
+        phase1.start_phase()
     
         
     #if the first two words in a 3+ word command are "talk to"
@@ -48,7 +48,6 @@ class Game:
         
     #if the first word in a 3+ word command is "open", "unlock", or "enter"
     def player_door_interaction(self, door):
-        print("We're on the game and the door is " + door)
         self.player.interact_door(door)
         
     #if the first word in a 2+ word command is "drop" or "use"

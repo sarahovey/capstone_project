@@ -11,7 +11,6 @@ class initializer:
         self.start_screen()
         self.game = game.Game()
         self.parser = test_parser.Parser(self.game)
-        print("done making the game in initializer")
         
     #start up the parser
     def start_parser(self):

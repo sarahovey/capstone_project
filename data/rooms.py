@@ -94,9 +94,9 @@ class back_yard(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
-        name = "You are in the " + self.name + "\n"
+        start = "You are in the " + self.name + "\n You take a look around "
         preface = "You see a "
-        room_description = name
+        room_description = start
         for item in self.items:
             #something is failing while building this string
             item_description = item.description()
@@ -144,9 +144,9 @@ class kitchen(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
-        name = "You are in the " + self.name + "\n"
+        start = "You are in the " + self.name + "\n You take a look around "
         preface = "You see a "
-        room_description = name
+        room_description = start
         for item in self.items:
             #something is failing while building this string
             item_description = item.description()
@@ -193,9 +193,9 @@ class office(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
-        name = "You are in the " + self.name + "\n"
+        start = "You are in the " + self.name + "\n You take a look around "
         preface = "You see a "
-        room_description = name
+        room_description = start
         for item in self.items:
             #something is failing while building this string
             item_description = item.description()
@@ -245,9 +245,9 @@ class bedroom(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
-        name = "You are in the " + self.name + "\n"
+        start = "You are in the " + self.name + "\n You take a look around "
         preface = "You see a "
-        room_description = name
+        room_description = start
         for item in self.items:
             #something is failing while building this string
             item_description = item.description()
@@ -256,7 +256,7 @@ class bedroom(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "\nYou also see \n"
+        room_description += "\n\nYou also see \n"
         for door in self.doors:
             room_description += "a door to the " + door.from_room.name + " \n"
             
@@ -275,7 +275,7 @@ class bedroom(Room):
 #Phase 2 rooms
 class sand_pit(Room):
     def __init__(self, player):
-        self.name = "Sand pit"
+        self.name = "sand pit"
         self.items = []
         self.load_items()
         self.npcs = self.load_npcs()
@@ -322,7 +322,7 @@ class sand_pit(Room):
 
 class open_grass(Room):
     def __init__(self, player):
-        self.name = "Open grass"
+        self.name = "open grass"
         self.items = []
         self.load_items()
         self.npcs = []
@@ -374,6 +374,7 @@ class agility_course(Room):
     def __init__(self, player):
         self.name = "agility course"
         self.items = []
+        self.player = player
         self.load_items()
         self.npcs = []
         self.load_npcs()
@@ -387,23 +388,33 @@ class agility_course(Room):
         self.items = [water_bowl, kibbles]
         
     def load_npcs(self):
-        rusty = npcs.rusty()
+        rusty = npcs.rusty(self.player)
         rusty.inventory.append(items.map())
         self.npcs = [rusty]
         
     
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
+            
         for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.description() + " \n"
+            npc_description = npc.description()
+            if npc_description is not None:
+                room_description+= preface + npc.name + ". " + npc.description() + " \n"
+            else:
+                room_description+= preface + npc.name
             
         room_description += "You also see \n"
         for gate in self.gates:
-            room_description += "a gate to " + gate.from_room + " \n"
+            room_description += "a gate to " + gate.from_room.name + " \n"
             
         print(room_description)
     
@@ -438,16 +449,22 @@ class dog_pool(Room):
         self.npcs = []
     
     def long_description(self):
-        #This builds a long description of all items and their states
+        name = "You're in " + self.name + " \n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
+            
         room_description += "You also see \n"
         for gate in self.gates:
-            room_description += "a gate to " + gate.from_room + " \n"
+            #We can assume here that we only ever need to look at the from room
+            #because all phases are a hub and spoke net of roooms
+            room_description += "a gate to " + gate.from_room.name + " \n"
+            
         print(room_description)
     
     def short_description(self):
@@ -482,18 +499,22 @@ class shady_grove(Room):
         self.npcs = []
     
     def long_description(self):
-        #This builds a long description of all items and their states
+        name = "You're in " + self.name
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-            
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
         room_description += "You also see \n"
         for gate in self.gates:
-            room_description += "a gate to " + gate.from_room + " \n"
+            #We can assume here that we only ever need to look at the from room
+            #because all phases are a hub and spoke net of roooms
+            room_description += "a gate to " + gate.from_room.name + " \n"
+            
         print(room_description)
     
     def short_description(self):

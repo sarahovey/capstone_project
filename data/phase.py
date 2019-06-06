@@ -83,19 +83,19 @@ class Phase2:
         open_grass = rooms.open_grass(self.player)
         
         sand_pit = rooms.sand_pit(self.player)
-        sand_pit_gate = items.gate(self.player, sand_pit, open_grass)
+        sand_pit_gate = items.gate(self.player, open_grass, sand_pit)
         sand_pit.gates = [sand_pit_gate]
         
         agility_course = rooms.agility_course(self.player)
-        agility_course_gate = items.gate(self.player, agility_course, open_grass)
+        agility_course_gate = items.gate(self.player, open_grass, agility_course)
         agility_course.gates = [agility_course_gate]
         
         dog_pool = rooms.dog_pool(self.player)
-        dog_pool_gate = items.gate(self.player, dog_pool, open_grass)
+        dog_pool_gate = items.gate(self.player, open_grass, dog_pool)
         dog_pool.gates = [dog_pool_gate]
         
         shady_grove = rooms.shady_grove(self.player)
-        shady_grove_gate = items.gate(self.player, shady_grove, open_grass)
+        shady_grove_gate = items.gate(self.player, open_grass, shady_grove)
         shady_grove.gates = [shady_grove_gate]
         
         

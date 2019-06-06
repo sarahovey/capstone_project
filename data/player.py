@@ -72,7 +72,7 @@ class Player:
     #Interaction with an npc
     def interact_npc(self, npc):
         if len(self.current_room.npcs) >= 1: 
-            for person in self.current_room:
+            for person in self.current_room.npcs:
                 if person.name == npc:
                     person.interact()
                     return
@@ -84,7 +84,8 @@ class Player:
           
     #Interaction with a door, trying to enter, unlock, etc      
     def interact_door(self, target_door):
-        print("on the player, the door is " + target_door)
+        #print("on the player, the door is " + target_door)
+        #Phase 1 and 3 doors
         if hasattr(self.current_room, 'doors'):
             print("this time its a regular door")
             #there is only one occasion of a phase door being put into the doors list in a room
@@ -93,26 +94,34 @@ class Player:
                 #this supports just the name of the room, we'd need to strip "door" 
                 #out in the parser from the end of a command, unless its 'front door'
                 if hasattr(door, 'to_room' ):
-                    print("we found a regular door")
                     if door.to_room.name == target_door:
-                        print("we're going to the to room")
                         door.interact()
                         return
                     elif door.from_room.name == target_door:
-                        print("we're going to the from room")
                         door.interact()
                         return
                     else:
                         print("I don't think that's a door...")
+                        
                 #this is always the front door in phase 1
                 elif hasattr(door, 'to_phase'):
                     if door.name == target_door:
                         print(target_door)
                         door.interact()
+                        
+        #Phase 2 gates
         if hasattr(self.current_room, 'gates'):
-            for gate in self.current_room.gates: #<- gates here
-                if gate.name == target_door:
-                    gate.interact()
+            for gate in self.current_room.gates:
+                if hasattr(gate, 'to_room' ):
+                    if gate.to_room.name == target_door:
+                        gate.interact()
+                        return
+                    elif gate.from_room.name == target_door:
+                        gate.interact()
+                        return
+                    else:
+                        print("bad door")
+                        print("I don't think that's a door...")
             
     #Dropping or using an item in inventory    
     def interact_inventory(self, action, obj):
@@ -128,7 +137,7 @@ class Player:
         elif action == "use":
             for item in self.inventory:
                 if item.name == obj:
-                    item.description()
+                    item.interact()
         else:
             print("That item isn't in your inventory, you can't use or drop it!")
         
@@ -136,11 +145,13 @@ class Player:
     def interact_item(self, action, obj):
         found_action = False
         found_item = False
+        target_item = None
         for item in self.current_room.items:
             #Look for the item in the current room
             if item.name == obj:
                 #We have found the item by name in the room
                 found_item = True
+                target_item = item
                 
                 #Try taking an item
                 if action == "take":
@@ -160,10 +171,11 @@ class Player:
             return
         
         #Once we have found the item, we can see if it has that action on it
-        for word in item.actions:
+        for word in target_item.actions:
             if word == action:
-                item.interact()
+                target_item.interact()
                 found_action == True
+                return
                 #found_item = False
                     
         #we can assume that that action does not apply to the item that was found
