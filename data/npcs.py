@@ -11,7 +11,6 @@ class NPC:
 class cat(NPC):
     def __init__(self):
         self.name = "cat"
-        self.description = self.description()
         self.dialogue = self.show_dialogue()
         
     def meet(self):
@@ -111,5 +110,4 @@ class coworker(NPC):
         print(".....")
         print("I know your person! I'll take you to them, let's go!")
         self.inventory[0].start_next_phase()
-        input()
         

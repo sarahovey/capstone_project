@@ -63,8 +63,7 @@ class Phase2:
         self.player = player
         self.rooms = []
         self.make_rooms()
-        self.spawn_point = ""
-        
+        self.spawn_point = self.rooms[0]
         
     def start_phase(self):
         #set current phase and room
@@ -77,6 +76,8 @@ class Phase2:
             for line in fp:
                 print(line)
                 input()
+                
+        self.player.current_room.enter_room()
                 
     def make_rooms(self):
         open_grass = rooms.open_grass(self.player)
@@ -108,7 +109,7 @@ class Phase3:
         self.player = player
         self.rooms = []
         self.make_rooms()
-        self.spawn_point = ""
+        self.spawn_point = self.rooms[0]
         
     def start_phase(self):
         #set current phase and room
@@ -121,6 +122,9 @@ class Phase3:
             for line in fp:
                 print(line)
                 input()
+                
+        self.player.current_room.enter_room()
+        
     def make_rooms(self):
         lobby = rooms.lobby(self.player)
         
@@ -140,7 +144,7 @@ class Phase3:
         common_area_door = items.gate(self.player, lobby, common_area)
         common_area.doors = [common_area_door]
         
-        lobby_doors = [cubicle_door, break_room_door, supply_closet_door, common_area_door]
+        lobby.doors = [cubicle_door, break_room_door, supply_closet_door, common_area_door]
         self.rooms = [lobby, cubicle, break_room, supply_closet, common_area]
         self.spawn_point = lobby
         
