@@ -147,23 +147,17 @@ class door (Item):
             print("It's locked")
             
     def interact(self):
-        print("is this door unlocked? " + str(self.unlocked))
         if self.needed_key == "none":
             self.unlocked = True
         #if a key is needed
         if self.unlocked is False:
             #if self.needed_key in self.player.inventory:
             for item in self.player.inventory:
-                print("Does it match: " + item.name + " " + self.needed_key)
                 if item.name == self.needed_key:
                     print("you opened the door!")
                     self.unlocked = True
                     self.change_room()
             else:
-                # print("needed key: " + self.needed_key)
-                # print("Things I have:\n")
-                # for item in self.player.inventory:
-                #     print(item.name)
                 print("you need a key to open this door")
                 
         elif self.unlocked is True:
@@ -340,7 +334,7 @@ class water (Item):
 
 #Phase 2 Items
 class gate (Item):
-    def __init__(self, player, to_room, from_room):
+    def __init__(self, player, from_room, to_room):
         self.name = "gate"
         self.can_be_held = False
         self.player = player
@@ -353,14 +347,7 @@ class gate (Item):
         print("enter this gate to go to " + self.to_room)
             
     def interact(self):
-        while():
-            print("Do you want to go through this gate to " + self.to_room + "? y/n?")
-            choice = input()
-            if choice == "y":
-                return True
-                return False
-            else:
-                print("Try again:")
+        self.change_room()
                 
     def change_room(self):
         if self.player.current_room == self.from_room:
@@ -437,7 +424,7 @@ class floaty (Item):
     def __init__(self):
         self.name = "floaty"
         self.can_be_held = False
-        self.actions = ["jump on"]
+        self.actions = ["float"]
         self.touched = False
     
     def description(self):
@@ -527,9 +514,9 @@ class map (Item):
     def __init__(self):
         self.name = "map"
         self.can_be_held = True
-        self.actions = ["read", "open"]
+        self.actions = ["use","read", "open"]
         self.touched = False
-        self.phase_door = "" #this gets populated
+        self.phase_door = None #this gets populated
     
     def description(self):
         print("A map to the office your human works at")
@@ -537,6 +524,7 @@ class map (Item):
     def interact(self):
         print("You read the map. You find a route to your human's office.")
         print("Do you want to go there now?")
+        self.phase_door.start_next_phase()
         
 class pad_lock (Item):
     def __init__(self):

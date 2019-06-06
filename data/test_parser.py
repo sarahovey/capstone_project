@@ -20,16 +20,14 @@ class Parser:
                 #print(npc)
                 self.game.player_npc_interaction(npc)
                 
-            #if the first word in a 2+ word command is "drop" or "use"
+            #if the first word in a 3 word command is "drop" or "use"
             elif command[0] == "drop" or command[0] == "use":
+                action = command[0]
                 item = command[1] + " " + command[2]
-                #print(item)
-                self.game.player_inventory_interaction(item)
+                self.game.player_inventory_interaction(action, item)
                 
             #if the first word in a 3 word command is "open", "unlock", or "enter"
             elif command[0] in door_words:
-                print("Door command!!")
-                print(command[0])
                 #do we need the full phrase? like 'kitchen door' or just 'kitchen'?
                 #we should be checking to see if the last word is 'door' and maybe get rid of that?
                 door=command[1] + " " + command[2]
@@ -44,10 +42,16 @@ class Parser:
                 self.game.player_item_interaction(action, item)
           
         elif len(command) == 2:
-            #if the first word in a 2+ word command is "open", "unlock", or "enter"
+            #if the first word in a 2 word command is "open", "unlock", or "enter"
             if command[0] in door_words:
                 door= command[1]
                 self.game.player_door_interaction(door)
+                
+            #if the first word in a 2 word command is "drop" or "use"
+            elif command[0] == "drop" or command[0] == "use":
+                action = command[0]
+                item = command[1]
+                self.game.player_inventory_interaction(action, item)
                   
             else:
                 #2+ word command to interact with an item, like 'bite hose'
