@@ -247,7 +247,7 @@ class kibble (Item):
         if self.touched:
             return "A bowl of kibble. It's got some crumbs around it."
         else:
-            return "Just a bowl of kibble"
+            return "Just a bowl of your favorite kibble, Acana."
             
     def interact(self):
         print("You eat some kibble")
@@ -327,7 +327,7 @@ class water (Item):
     
     def description(self):
         if self.touched is False:
-            return "Just a bowl of water"
+            return "Just a bowl of nice, crisp, clean water."
         elif self.touched is True:
             return "A bowl of water. It's got some splashes around it."
             

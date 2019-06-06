@@ -63,7 +63,7 @@ class living_room(Room):
         
     def short_description(self):
         #short description, used when you enter an already entered room
-        print("You are in the living room")
+        print("You are in the living room!")
         
     def enter_room(self):
         if self.entered:
