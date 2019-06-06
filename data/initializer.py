@@ -1,9 +1,9 @@
 """
 initializer.py
+===============
 
-This file initializes the start screen, game, parser and returns an instance of each.
+the initalizer.py file file initializes the phase, games and parser and returns an instance of each.
 """
-
 import phase
 import game
 import test_parser
@@ -21,13 +21,13 @@ class initializer:
         
     #start up the parser
     def start_parser(self):
+        pass
         # print("starting parser, return an instance")
 
     #display start screen
     def start_screen(self):
         game_type = False
-        #ASCII link for future reference
-        #http://www.network-science.de/ascii/?fbclid=IwAR0cTmfczog4CYHdSVJun5anLgCOsCkJUCS0cpCvjKcBnyYAwRKsFujTbjg
+        #I made this ASCII art by HAND!!!
         print("""
   ____    _  _____ _____ _     _____   ____   ___   ____ 
  / ___|  / \|_   _|_   _| |   | ____| |  _ \ / _ \ / ___|
