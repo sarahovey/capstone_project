@@ -146,6 +146,7 @@ class Player:
                 if action == "take":
                     if item.can_be_held is True:
                         self.inventory.append(item)
+                        self.current_room.items.remove(item)
                         print("You added the item to your inventory~")
                         found_action == True
                         #found_item == False

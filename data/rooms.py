@@ -348,13 +348,15 @@ class open_grass(Room):
         preface = "You see a "
         room_description = ""
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
         room_description += "You also see \n"
         for gate in self.gates:
-            room_description += "a gate to " + gate.to_room + " \n"
+            room_description += "a gate to " + gate.to_room.name + " \n"
             
         print(room_description)
     
