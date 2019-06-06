@@ -1,0 +1,4 @@
+commits.txt
+
+06/05/2019 - 8:23pm PST
+added comments and ASCII to initializer.py file
