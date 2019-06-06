@@ -20,7 +20,8 @@ class initializer:
     #display start screen
     def start_screen(self):
         game_type = False
-        #I made this ASCII art by HAND!!!
+        #ASCII link for future reference
+        #http://www.network-science.de/ascii/?fbclid=IwAR0cTmfczog4CYHdSVJun5anLgCOsCkJUCS0cpCvjKcBnyYAwRKsFujTbjg
         print("""
   ____    _  _____ _____ _     _____   ____   ___   ____ 
  / ___|  / \|_   _|_   _| |   | ____| |  _ \ / _ \ / ___|
