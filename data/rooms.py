@@ -15,7 +15,7 @@ class Room:
 #Phase 1 rooms    
 class living_room(Room):
     def __init__(self, player):
-        self.name = "Living Room"
+        self.name = "living room"
         self.player = player
         self.entered = False
         self.items = []
@@ -26,14 +26,14 @@ class living_room(Room):
         self.original_room = True #denotes position in hub and spoke network of rooms in each phase
         
     def load_items(self):
-        #kitchen_key = items.key("kitchen")
+        kitchen_key = items.key("kitchen key")
         couch = items.couch()
         tennis_ball = items.tennis_ball()
         blanket = items.blanket()
         water_bowl = items.water()
         kibble = items.kibble()
         
-        self.items = [couch, tennis_ball, blanket, water_bowl, kibble]
+        self.items = [couch, tennis_ball, blanket, water_bowl, kibble, kitchen_key]
         
     def load_npcs(self):
         self.npcs = []
@@ -74,8 +74,9 @@ class living_room(Room):
 
 class back_yard(Room):
     def __init__(self, player):
-        self.name = "Back yard"
-        self.items = self.load_items()
+        self.name = "back yard"
+        self.items = []
+        self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
         self.doors = []
@@ -93,16 +94,21 @@ class back_yard(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            #something is failing while building this string
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
-        room_description += "You also see \n"
+        room_description += "\nYou also see \n"
         for door in self.doors:
-            room_description += "a door to " + door.from_room + " \n"
+            room_description += "a door to the " + door.from_room.name + " \n"
+            
         print(room_description)
         
     def short_description(self):
@@ -117,17 +123,16 @@ class back_yard(Room):
         
 class kitchen(Room):
     def __init__(self, player):
-        self.name = "Kitchen"
-        self.items = self.load_items()
+        self.name = "kitchen"
+        self.items = []
+        self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
         self.doors = []
         self.original_room = False
         
     def load_items(self):
-        #Key to office
-        #Treats!
-        office_key = items.key("office")
+        office_key = items.key("office key")
         treat1 = items.treat()
         treat2 = items.treat()
         treat3 = items.treat()
@@ -139,16 +144,20 @@ class kitchen(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            #something is failing while building this string
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
-        room_description += "You also see \n"
+        room_description += "\nYou also see \n"
         for door in self.doors:
-            room_description += "a door to " + door.from_room + " \n"
+            room_description += "a door to the " + door.from_room.name + " \n"
             
         print(room_description)
         
@@ -164,15 +173,17 @@ class kitchen(Room):
         
 class office(Room):
     def __init__(self, player):
-        self.name = "Office"
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+        self.name = "office"
+        self.items = []
+        self.load_items()
+        self.npcs = [] 
+        self.load_npcs()
         self.entered = False
         self.doors = []
         self.original_room = False
         
     def load_items(self):
-        key_to_bedroom = items.key("bedroom")
+        key_to_bedroom = items.key("bedroom key")
         bookshelf = items.book_shelf()
         trashcan = items.trash_can()
         self.items = [key_to_bedroom, bookshelf, trashcan]
@@ -182,16 +193,24 @@ class office(Room):
         
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            #something is failing while building this string
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
-        room_description += "You also see \n"
+        room_description += "\nYou also see \n"
         for door in self.doors:
-            room_description += "a door to " + door.from_room + " \n"
+            #print(door.name)
+            if door.name == "front door":
+                room_description += "the front door, outside it lies.... the whole world!"
+            else:
+                room_description += "a door to the " + door.to_room.name + " \n"
             
         print(room_description)
         
@@ -208,7 +227,8 @@ class office(Room):
 class bedroom(Room):
     def __init__(self, player):
         self.name = "bedroom"
-        self.items = self.load_items()
+        self.items = []
+        self.load_items()
         self.npcs = ""
         self.entered = False
         self.doors = []
@@ -217,23 +237,28 @@ class bedroom(Room):
     def load_items(self):
         #saddlebags = items.saddlebags(self.player)
         bed = items.bed()
-        self.items = [bed]
+        key_to_frontdoor = items.key("front door key")
+        self.items = [bed, key_to_frontdoor]
         
     def load_npcs(self):
         self.npcs = []
         
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            #something is failing while building this string
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
-        room_description += "You also see \n"
+        room_description += "\nYou also see \n"
         for door in self.doors:
-            room_description += "a door to " + door.from_room + " \n"
+            room_description += "a door to the " + door.from_room.name + " \n"
             
         print(room_description)
         
@@ -251,7 +276,8 @@ class bedroom(Room):
 class sand_pit(Room):
     def __init__(self, player):
         self.name = "Sand pit"
-        self.items = self.load_items()
+        self.items = []
+        self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
         self.original_room = True
@@ -268,18 +294,21 @@ class sand_pit(Room):
     
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
-        for npc in self.npcs:
-            room_description+= preface + npc.name + ". " + npc.npc_description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
             
-        room_description += "You also see \n"
+        room_description += "\nYou also see \n"
         for gate in self.gates:
-            room_description += "a gate to " + gate.from_room + " \n"
-            
+            room_description += "a door to the " + gate.from_room.name + " \n"
         print(room_description)
+        
     
     def short_description(self):
         print("You entered the Sand Box! It is nice and soft in here")
@@ -294,8 +323,10 @@ class sand_pit(Room):
 class open_grass(Room):
     def __init__(self, player):
         self.name = "Open grass"
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        self.load_npcs()
         self.entered = False
         self.original_room = False
         self.gates = []
@@ -386,7 +417,8 @@ class agility_course(Room):
 class dog_pool(Room):
     def __init__(self, player):
         self.name = "dog pool"
-        self.items = self.load_items()
+        self.items = []
+        self.load_items()
         self.npcs = self.load_npcs()
         self.entered = False
         self.original_room = False
@@ -429,8 +461,10 @@ class dog_pool(Room):
 class shady_grove(Room):
     def __init__(self, player):
         self.name = "shady grove"
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        self.load_npcs()
         self.entered = False
         self.original_room = False
         self.gates = []
@@ -474,8 +508,10 @@ class shady_grove(Room):
 class lobby(Room):
     def __init__(self, player):
         self.name = "Lobby"
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        self.load_npcs()
         self.entered = False
         self.original_room = True
         self.doors = []
@@ -512,8 +548,10 @@ class lobby(Room):
 class break_room(Room):
     def __init__(self, player):
         self.name = "Break room"
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        self.load_npcs()
         self.entered = False
         self.original_room = False
         self.doors = []
@@ -549,8 +587,10 @@ class break_room(Room):
 class supply_closet(Room):
     def __init__(self, player):
         self.name = "supply closet"
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        self.load_npcs()
         self.entered = False
         self.original_room = False
         self.doors = []
@@ -586,8 +626,10 @@ class supply_closet(Room):
 class common_area(Room):
     def __init__(self, player):
         self.name = "common area"
-        self.items = self.load_items()
-        self.npcs = self.load_npcs()
+        self.items = []
+        self.load_items()
+        self.npcs = []
+        self.load_npcs()
         self.entered = False
         self.original_room = False
         self.doors = []
@@ -627,7 +669,6 @@ class cubicle(Room):
         self.items = []
         self.load_items()
         self.npcs = []
-        print("loading npcs from cubible")
         self.load_npcs()
         self.entered = False
         self.original_room = False

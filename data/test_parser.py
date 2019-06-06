@@ -6,8 +6,12 @@ class Parser:
         command = command.split()
         door_words = ['open', 'unlock', 'enter']
         #This probably wants refactoring...
-        if len(command) > 3:
-            print("too many!")
+        
+        if len(command) == 4:
+            if command[0] == "take":
+                action = "take"
+                item = command[1] + " " + command[2] + " " + command[3]
+                self.game.player_item_interaction(action, item)
             
         elif len(command) == 3:
             #if the first two words in a 3 word command are "talk to"
@@ -22,7 +26,7 @@ class Parser:
                 #print(item)
                 self.game.player_inventory_interaction(item)
                 
-            #if the first word in a 2+ word command is "open", "unlock", or "enter"
+            #if the first word in a 3 word command is "open", "unlock", or "enter"
             elif command[0] in door_words:
                 print("Door command!!")
                 print(command[0])

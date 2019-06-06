@@ -42,7 +42,7 @@ class Phase1:
         
         
         bedroom = rooms.bedroom(self.player)
-        bedroom_door = items.door(self.player, "bedroom_key", living_room, bedroom)
+        bedroom_door = items.door(self.player, "bedroom key", living_room, bedroom)
         bedroom.doors = [bedroom_door]
         
         office = rooms.office(self.player)
@@ -72,7 +72,7 @@ class Phase2:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'phase2_starting_flavor.txt' 
+        filepath = 'data/phase2_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)
@@ -116,7 +116,7 @@ class Phase3:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'phase3_starting_flavor.txt' 
+        filepath = 'data/phase3_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)

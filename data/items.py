@@ -26,9 +26,17 @@ class phase_door(Item):
         self.message = message
         self.actions = ["go", "go to" "enter", "open"]
         self.description_string = description_string
+        self.locked = False
         
     def description(self):
         print(self.description_string)
+        
+    #this is a one off hack for the front door
+    def interact(self):
+        for item in self.player.inventory:
+            if item.name == 'front door key':
+                print("You unlocked the front door!")
+                self.start_next_phase()
         
     def start_next_phase(self):
         #are you sure?
@@ -126,7 +134,7 @@ class door (Item):
         self.needed_key = needed_key
         self.from_room = from_room
         self.to_room = to_room
-        self.actions = ["unlock", "enter"]
+        self.actions = ["unlock", "enter", "open"]
         
     def description(self):
         if self.unlocked:
@@ -135,18 +143,34 @@ class door (Item):
             print("It's locked")
             
     def interact(self):
+        print("is this door unlocked? " + str(self.unlocked))
         if self.needed_key == "none":
             self.unlocked = True
+        #if a key is needed
         if self.unlocked is False:
-            if self.needed_key in self.player.inventory:
-                print("you opened the door!")
-                self.unlocked = True
+            #if self.needed_key in self.player.inventory:
+            for item in self.player.inventory:
+                print("Does it match: " + item.name + " " + self.needed_key)
+                if item.name == self.needed_key:
+                    print("you opened the door!")
+                    self.unlocked = True
+                    self.change_room()
             else:
+                # print("needed key: " + self.needed_key)
+                # print("Things I have:\n")
+                # for item in self.player.inventory:
+                #     print(item.name)
                 print("you need a key to open this door")
                 
+        elif self.unlocked is True:
+            self.unlocked = True
+            self.change_room()
+                
     def change_room(self):
+        print(self.player.current_room)
         if self.player.current_room == self.from_room:
             self.player.change_room(self.to_room)
+            print(self.player.current_room)
         elif self.player.current_room == self.to_room:
             self.player.change_room(self.from_room)
         

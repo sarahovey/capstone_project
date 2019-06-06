@@ -47,6 +47,7 @@ class Game:
         
     #if the first word in a 3+ word command is "open", "unlock", or "enter"
     def player_door_interaction(self, door):
+        print("We're on the game and the door is " + door)
         self.player.interact_door(door)
         
     #if the first word in a 2+ word command is "drop" or "use"

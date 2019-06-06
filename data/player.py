@@ -84,10 +84,31 @@ class Player:
           
     #Interaction with a door, trying to enter, unlock, etc      
     def interact_door(self, target_door):
+        print("on the player, the door is " + target_door)
         if hasattr(self.current_room, 'doors'):
+            print("this time its a regular door")
+            #there is only one occasion of a phase door being put into the doors list in a room
             for door in self.current_room.doors:
-                if door.name == target_door:
-                    door.interact()
+                print("looking through all the doors in this room...")
+                #this supports just the name of the room, we'd need to strip "door" 
+                #out in the parser from the end of a command, unless its 'front door'
+                if hasattr(door, 'to_room' ):
+                    print("we found a regular door")
+                    if door.to_room.name == target_door:
+                        print("we're going to the to room")
+                        door.interact()
+                        return
+                    elif door.from_room.name == target_door:
+                        print("we're going to the from room")
+                        door.interact()
+                        return
+                    else:
+                        print("I don't think that's a door...")
+                #this is always the front door in phase 1
+                elif hasattr(door, 'to_phase'):
+                    if door.name == target_door:
+                        print(target_door)
+                        door.interact()
         if hasattr(self.current_room, 'gates'):
             for gate in self.current_room.gates: #<- gates here
                 if gate.name == target_door:
