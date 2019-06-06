@@ -9,11 +9,10 @@ import items
 class Game:
     def __init__(self):
         self.phases_list = []
-        self.player = ""
-        
         self.player = player.Player()
         self.start_phases()
         
+    #Wake up all the phases    
     def start_phases(self):
         phase1 = phase.Phase1(self.player)
         phase2 = phase.Phase2(self.player)
@@ -40,36 +39,27 @@ class Game:
         self.phases_list = [phase1, phase2, phase3]
         
         phase1.start_phase()
+    
         
+    #if the first two words in a 3+ word command are "talk to"
+    def player_npc_interaction(self, npc):
+        self.player.interact_npc(npc)
+        
+    #if the first word in a 3+ word command is "open", "unlock", or "enter"
+    def player_door_interaction(self, door):
+        print("We're on the game and the door is " + door)
+        self.player.interact_door(door)
+        
+    #if the first word in a 2+ word command is "drop" or "use"
+    def player_inventory_interaction(self, action, object):
+        self.player.interact_inventory(action, object)
+     
+    #1 word commands, like help or inventory   
     def player_action(self, action):
         self.player.action(action)
         
-    def player_interaction(self, obj, action):
-        self.player.interact(object, action)
+    #2+ word command to interact with an item
+    def player_item_interaction(self, action, object):
+        self.player.interact_item(action, object)
         
-    def load_game(self):
-        print("Not yet!")
-        # print("are you sure?") #need to find a way to only show this if its being loaded from an in-progress game
-        # file_name = "saved_game/save_file"
-        # fp = open(file_name, "r")
-        
-        # #unpickle
-        # pickle.load(fp)
-        
-        # fp.close
-        
-    # def save_game(self):
-    #     print("Coming soon!")
-    #     # file_name = "saved_game/save_file"
-    #     # fp = open(file_name, "w")
-    #     # print("saving game...")
-    #     # pickle.dump(self, file_name)
-    #     # fp.close()
-        
-    # def new_game(self):
-    #     return "new game"
-    #     self.phases_list[0].start_phase(self.player)
-    #     #start a new phase
-        
-    
     

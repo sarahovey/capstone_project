@@ -86,7 +86,7 @@ class rusty(NPC):
             
 class coworker(NPC):
     def __init__(self):
-        self.name = "Human's Coworker"
+        self.name = "coworker"
         self.met = False
         self.quest_finished = False
         self.concluded_quest = False #this means the npc has acknowledged the quest ended
