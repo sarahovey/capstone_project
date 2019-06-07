@@ -44,3 +44,4 @@ bug #8
 if you take all items you cant finish rusty quest
 item_found = self.quest_finished = self.player.find_item(["tennis ball", "stick", "squeaky toy"])
 error is here
+oh it needs a true false statement
