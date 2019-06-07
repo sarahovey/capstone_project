@@ -1,0 +1,46 @@
+PHASE 1 BUGS
+
+BUG #1 when you first start the game "This is a key" prints to terminal.
+its a bug with key.description() being called in the wrong spot by an initializer
+
+BUG #2 open door print loop error
+looking through all the doors in the room... is printed 2x, interact_door() bug it prints twice?
+i dont think thats a door will loop as well when you iterate through the list
+
+BUG #3
+<rooms.living_room object at 0x00EFE3D0> prints to terminal
+this is a bug showing the object memory location within
+hrmmm no idea
+
+BUG #4
+<rooms.kitchen object at 0x02E84E30>
+again it printed, its an error to printing the function?
+
+PHASE #2 BUGS
+bug #5
+BAD DOOR and I DONT THINK THATS A DOOR BUG
+present in bug #2 and probably will be fixed with thats
+commented out bad door, fixed
+
+bug #6 
+Rusty talking error bug, needs formating, no space between RustyYou
+
+bug #7
+Drop frisbee caused game to crash
+drop frisbee
+Traceback (most recent call last):
+  File "demo.py", line 14, in <module>
+    parser.parse(command)
+  File "C:\Users\danie\Desktop\OSU\467\capstone_project\data\test_parser.py", line 54, in
+parse
+    self.game.player_inventory_interaction(action, item)
+  File "C:\Users\danie\Desktop\OSU\467\capstone_project\data\game.py", line 55, in player_inventory_interaction
+    self.player.interact_inventory(action, object)
+  File "C:\Users\danie\Desktop\OSU\467\capstone_project\data\player.py", line 138, in interact_inventory
+    print("you dropped " + obj.name)
+AttributeError: 'str' object has no attribute 'name'
+
+bug #8
+if you take all items you cant finish rusty quest
+item_found = self.quest_finished = self.player.find_item(["tennis ball", "stick", "squeaky toy"])
+error is here

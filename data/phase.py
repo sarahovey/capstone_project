@@ -19,7 +19,7 @@ class Phase1:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'data/phase1_starting_flavor.txt' 
+        filepath = 'phase1_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)
@@ -71,7 +71,7 @@ class Phase2:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'data/phase2_starting_flavor.txt' 
+        filepath = 'phase2_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)
@@ -117,7 +117,7 @@ class Phase3:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'data/phase3_starting_flavor.txt' 
+        filepath = 'phase3_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)

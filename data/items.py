@@ -245,7 +245,7 @@ class kibble (Item):
         if self.touched:
             return "A bowl of kibble. It's got some crumbs around it."
         else:
-            return "Just a bowl of kibble"
+            return "Just a bowl of your favorite kibble, Acana."
             
     def interact(self):
         print("You eat some kibble")
@@ -287,7 +287,7 @@ class trash_can (Item):
         self.actions = ["sniff"]
     
     def description(self):
-        print("A container that you see your person throw things into...")
+        print("A container that you see your person throw things into... it smells great!")
             
     def interact(self):
         print("Hmm... just paper. Yuck.")
@@ -325,7 +325,7 @@ class water (Item):
     
     def description(self):
         if self.touched is False:
-            return "Just a bowl of water"
+            return "Just a bowl of crisp, clean water."
         elif self.touched is True:
             return "A bowl of water. It's got some splashes around it."
             
@@ -397,7 +397,7 @@ class frisbee(Item):
     
     def description(self):
         if self.touched is False:
-            return "Oh look a Frisbee! Maybe you can have someone play fetch with you."
+            return "A FRISBEE! Maybe you can have someone play fetch with you."
         elif self.touched is True:
             return "This Frisbee has great aerodynamics."
 
@@ -505,7 +505,7 @@ class squeaky_toy (Item):
         self.touched = False
     
     def description(self):
-        print("The squeakiest squeaky toy")
+        print("The squeakiest squeaky toy!")
 
     def interact(self):
         print("*SQUEAK*")

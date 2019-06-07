@@ -89,6 +89,10 @@ class Player:
         if hasattr(self.current_room, 'doors'):
             print("this time its a regular door")
             #there is only one occasion of a phase door being put into the doors list in a room
+            
+            #BUGS HERE with print stuck in for loop
+
+            # print("looking through all the doors in this room...")
             for door in self.current_room.doors:
                 print("looking through all the doors in this room...")
                 #this supports just the name of the room, we'd need to strip "door" 
@@ -120,7 +124,7 @@ class Player:
                         gate.interact()
                         return
                     else:
-                        print("bad door")
+                        # print("bad door")
                         print("I don't think that's a door...")
             
     #Dropping or using an item in inventory    
