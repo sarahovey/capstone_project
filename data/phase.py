@@ -32,7 +32,7 @@ class Phase1:
         #self.player.current_room.enter_room()
         
         kitchen = rooms.kitchen(self.player)
-        kitchen_door = items.door(self.player, "kitchen key", living_room, kitchen)
+        kitchen_door = items.door(self.player, "kitchen key!", living_room, kitchen)
         kitchen.doors = [kitchen_door]
         
         back_yard = rooms.back_yard(self.player)

@@ -32,7 +32,7 @@ class living_room(Room):
         blanket = items.blanket()
         water_bowl = items.water()
         kibble = items.kibble()
-        
+        g
         self.items = [couch, tennis_ball, blanket, water_bowl, kibble, kitchen_key]
         
     def load_npcs(self):
