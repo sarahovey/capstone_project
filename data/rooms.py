@@ -26,7 +26,7 @@ class living_room(Room):
         self.original_room = True #denotes position in hub and spoke network of rooms in each phase
         
     def load_items(self):
-        kitchen_key = items.key("kitchen key")
+        kitchen_key = items.key("kitchen key!")
         couch = items.couch()
         tennis_ball = items.tennis_ball()
         blanket = items.blanket()
