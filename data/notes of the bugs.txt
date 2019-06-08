@@ -16,6 +16,11 @@ BUG #4
 <rooms.kitchen object at 0x02E84E30>
 again it printed, its an error to printing the function?
 
+bug #5
+NONE in item description 
+needs to have a description
+line 31 player.py
+
 PHASE #2 BUGS
 bug #5
 BAD DOOR and I DONT THINK THATS A DOOR BUG

@@ -212,6 +212,7 @@ class key (Item):
     
     def description(self):
         print("This is a key")
+        pass
 
     def interact(self):
         print("This is a key, use it to unlock a door...")

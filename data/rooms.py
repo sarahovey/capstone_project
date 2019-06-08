@@ -43,10 +43,15 @@ class living_room(Room):
         name = "You are in the " + self.name + "\n"
         preface = "You see a "
         room_description = name
-        for item in self.items:
+        iteritems = self.items
+        skipfirst = iter(iteritems)
+        next(skipfirst)
+        for item in skipfirst:
             #something is failing while building this string
             item_description = item.description()
             if item_description is not None:
+                print("THIS IS A KEY TOO HAHA")
+                #found it
                 room_description+= preface + item.name + ". " + item_description + " \n"
             else:
                 room_description+= preface + item.name + "\n"
@@ -455,6 +460,7 @@ class dog_pool(Room):
         for item in self.items:
             item_description = item.description()
             if item_description is not None:
+                # print("THIS IS A KEY TOO HAHA")
                 room_description+= preface + item.name + ". " + item_description + " \n"
             else:
                 room_description+= preface + item.name + "\n"

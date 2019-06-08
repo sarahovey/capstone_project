@@ -28,7 +28,7 @@ class Player:
             
         for item in self.inventory:
             print(item.name)
-            print(item.description())
+            print(item.description)
             
     def help(self):
         print("help messages")
