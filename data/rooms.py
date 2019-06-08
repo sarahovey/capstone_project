@@ -56,7 +56,7 @@ class living_room(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "\n You also see... \n"
+        room_description += "\nYou also see... \n"
         for door in self.doors:
             #print(door.name)
             if door.name == "front door":
@@ -110,7 +110,7 @@ class back_yard(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "\n You also see... \n"
+        room_description += "\nYou also see... \n"
         for door in self.doors:
             room_description += "a door to the " + door.from_room.name + " \n"
             
@@ -160,7 +160,7 @@ class kitchen(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "\n You also see... \n"
+        room_description += "\nYou also see... \n"
         for door in self.doors:
             room_description += "a door to the " + door.from_room.name + " \n"
             
@@ -209,7 +209,7 @@ class office(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "\n You also see... \n"
+        room_description += "\nYou also see... \n"
         for door in self.doors:
             #print(door.name)
             if door.name == "front door":
@@ -261,7 +261,7 @@ class bedroom(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "\n\n You also see... \n"
+        room_description += "\n\nYou also see... \n"
         for door in self.doors:
             room_description += "a door to the " + door.from_room.name + " \n"
             
@@ -309,7 +309,7 @@ class sand_pit(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "\n You also see... \n"
+        room_description += "\nYou also see... \n"
         for gate in self.gates:
             room_description += "a door to the " + gate.from_room.name + " \n"
         print(room_description)
@@ -505,7 +505,7 @@ class shady_grove(Room):
         self.npcs = []
     
     def long_description(self):
-        name = "You're in " + self.name
+        name = "You're in " + self.name + ". \n"
         preface = " You see a "
         room_description = name
         for item in self.items:
@@ -556,7 +556,7 @@ class lobby(Room):
         self.npcs = []
 
     def long_description(self):
-        name = "You're in " + self.name
+        name = "You're in " + self.name + ". \n"
         preface = " You see a "
         room_description = name
         for item in self.items:

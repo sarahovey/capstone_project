@@ -28,7 +28,8 @@ class Player:
             
         for item in self.inventory:
             print(item.name)
-            print(item.description())
+            if item.description() is not None:
+                print(item.description())
             
     def help(self):
         print("help messages")
@@ -105,7 +106,8 @@ class Player:
                         door.interact()
                         return
                     else:
-                        print("I don't think that's a door...")
+                        # print("I don't think that's a door...")
+                        pass
                         
                 #this is always the front door in phase 1
                 elif hasattr(door, 'to_phase'):
@@ -132,11 +134,14 @@ class Player:
     def interact_inventory(self, action, obj):
         if action == "drop":
             #check inventory for the item to drop
+            # if obj in self.inventory:
             for item in self.inventory:
                 if item.name == obj:
                     self.inventory.remove(item)
                     self.current_room.items.append(item)
                     print("you dropped " + item.name)
+            # else:
+            #     print("You can't dooo that!")
         #use an inventory item, 
         #just print the desc if it exists
         elif action == "use":
