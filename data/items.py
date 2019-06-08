@@ -69,10 +69,10 @@ class bed (Item):
         self.actions = ["jump on"]
     
     def description(self):
-        print("A big comfy bed!")
+        return "A big comfy bed!"
             
     def interact(self):
-        print("You jump onto the bed and bounce around a little")
+        return "You jump onto the bed and bounce around a little"
         
 class blanket (Item):
     def __init__(self):
@@ -138,9 +138,9 @@ class door (Item):
         
     def description(self):
         if self.unlocked:
-            print("It's open! You can go from " + self.from_room.name + " to " + self.to_room.name)
+            return "It's open! You can go from " + self.from_room.name + " to " + self.to_room.name
         else:
-            print("It's locked")
+            return "It's locked"
             
     def interact(self):
         if self.needed_key == "none":
@@ -175,7 +175,7 @@ class herding_ball (Item):
         self.actions = ["play", "roll", "herd"]
     
     def description(self):
-        print("A big round ball to push around with your nose.")
+        return "A big round ball to push around with your nose."
             
     def interact(self):
         print("You push the ball around. Just like herding a cow.")
@@ -188,9 +188,9 @@ class hose (Item):
     
     def description(self):
         if self.touched:
-            print("The hose is uncoiled on the lawn.")
+             return "The hose is uncoiled on the lawn."
         else:
-            print("The wet tube: the hose")
+            return "The wet tube: the hose"
             
     def interact(self):
         if self.touched:
@@ -207,8 +207,7 @@ class key (Item):
         self.actions = ["use", "unlock"]
     
     def description(self):
-        print("This is a key")
-        pass
+        return "A Bluetooth key. You don't need thumbs to unlock anything anymore!"
 
     def interact(self):
         print("This is a key, use it to unlock a door...")
@@ -226,7 +225,7 @@ class kiddie_pool (Item):
         self.actions = ["splash", "swim", "jump"]
     
     def description(self):
-        print("A shallow pool for you to cool your paws in")
+        return "A shallow pool for you to cool your paws in"
             
     def interact(self):
         print("You leap into the pool and splash around. Feels good on a hot day.")
@@ -254,7 +253,7 @@ class saddlebags (Item):
         self.can_be_held = True
     
     def description(self):
-        print("A harness with pockets")
+        return "A harness with pockets"
             
     def interact(self):
         #initialize the player's inventory with the front door key
@@ -284,7 +283,7 @@ class trash_can (Item):
         self.actions = ["sniff"]
     
     def description(self):
-        print("A container that you see your person throw things into... it smells great!")
+        return "A container that you see your person throw things into... it smells great!"
             
     def interact(self):
         print("Hmm... just paper. Yuck.")
@@ -308,7 +307,7 @@ class tug_rope (Item):
         self.actions = ["grab", "chew"]
     
     def description(self):
-        print("A nice rope for playing tug of war with.")
+        return "A nice rope for playing tug of war with."
             
     def interact(self):
         print("You grab the rope and shake it around a little")
@@ -340,8 +339,7 @@ class gate (Item):
         self.actions = ["enter", "go through", "open"]
         
     def description(self):
-        print("it's a gate between the " + self.from_room + " and " + self.to_room)
-        print("enter this gate to go to " + self.to_room)
+        return "it's a gate between the " + self.from_room + " and " + self.to_room + "\nenter this gate to go to " + self.to_room
             
     def interact(self):
         self.change_room()
@@ -489,7 +487,7 @@ class stick (Item):
         self.touched = False
     
     def description(self):
-        print("The perfect stick for playing with!")
+        return "The perfect stick for playing with!"
 
     def interact(self):
         print("You carry the stick around proudly")
@@ -502,7 +500,7 @@ class squeaky_toy (Item):
         self.touched = False
     
     def description(self):
-        print("The squeakiest squeaky toy!")
+        return "The squeakiest squeaky toy!"
 
     def interact(self):
         print("*SQUEAK*")
@@ -516,7 +514,7 @@ class map (Item):
         self.phase_door = None #this gets populated
     
     def description(self):
-        print("A map to the office your human works at")
+        return "A map to the office your human works at"
 
     def interact(self):
         print("You read the map. You find a route to your human's office.")
