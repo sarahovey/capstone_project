@@ -31,7 +31,7 @@ class Parser:
                 #do we need the full phrase? like 'kitchen door' or just 'kitchen'?
                 #we should be checking to see if the last word is 'door' and maybe get rid of that?
                 door=command[1] + " " + command[2]
-                print(door)
+                # print(door)
                 self.game.player_door_interaction(door)
                 
             else:

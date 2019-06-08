@@ -113,7 +113,7 @@ class Player:
                 #this is always the front door in phase 1
                 elif hasattr(door, 'to_phase'):
                     if door.name == target_door:
-                        print(target_door)
+                        # print(target_door)
                         door.interact()
                         
         #Phase 2 gates
