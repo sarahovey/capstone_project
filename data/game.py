@@ -39,7 +39,7 @@ class Game:
         self.phases_list = [phase1, phase2, phase3]
         
         #changing this to help with testing, should be phase 1 here for real
-        phase1.start_phase()
+        phase2.start_phase()
     
         
     #if the first two words in a 3+ word command are "talk to"
