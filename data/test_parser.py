@@ -4,7 +4,7 @@ class Parser:
         
     def parse(self, command):
         command = command.split()
-        door_words = ['open', 'unlock', 'enter']
+        door_words = ['open', 'unlock', 'enter', 'go to']
         #This probably wants refactoring...
         
         if len(command) == 4:
