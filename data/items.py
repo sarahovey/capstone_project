@@ -299,7 +299,7 @@ class treat (Item):
         return "A meaty snack for a good dog!"
             
     def interact(self):
-        print("Tasty!")
+        print("Tasty! I'll save some for later.")
         
 class tug_rope (Item):
     def __init__(self):
