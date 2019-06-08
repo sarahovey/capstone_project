@@ -161,10 +161,10 @@ class door (Item):
             self.change_room()
                 
     def change_room(self):
-        print(self.player.current_room)
+        # print(self.player.current_room)
         if self.player.current_room == self.from_room:
             self.player.change_room(self.to_room)
-            print(self.player.current_room)
+            # print(self.player.current_room)
         elif self.player.current_room == self.to_room:
             self.player.change_room(self.from_room)
         

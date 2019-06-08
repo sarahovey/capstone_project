@@ -28,7 +28,7 @@ class Player:
             
         for item in self.inventory:
             print(item.name)
-            print(item.description)
+            print(item.description())
             
     def help(self):
         print("help messages")
@@ -135,7 +135,7 @@ class Player:
                 if item.name == obj:
                     self.inventory.remove(item)
                     self.current_room.items.append(item)
-                    print("you dropped " + obj.name)
+                    print("you dropped " + item.name)
         #use an inventory item, 
         #just print the desc if it exists
         elif action == "use":

@@ -117,7 +117,7 @@ class Phase3:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'data/phase3_starting_flavor.txt' 
+        filepath = 'phase3_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)
