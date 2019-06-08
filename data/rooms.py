@@ -556,11 +556,21 @@ class lobby(Room):
         self.npcs = []
 
     def long_description(self):
-        #This builds a long description of all items and their states
+        name = "You're in " + self.name
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
+            
+        room_description += "You also see... \n"
+        for door in self.doors:
+            #We can assume here that we only ever need to look at the from room
+            #because all phases are a hub and spoke net of roooms
+            room_description += "a door to " + door.to_room.name + " \n"
             
         print(room_description)
 
@@ -576,7 +586,7 @@ class lobby(Room):
 
 class break_room(Room):
     def __init__(self, player):
-        self.name = "Break room"
+        self.name = "break room"
         self.items = []
         self.load_items()
         self.npcs = []
@@ -597,10 +607,27 @@ class break_room(Room):
     
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
+            
+        for npc in self.npcs:
+            npc_description = npc.description()
+            if npc_description is not None:
+                room_description+= preface + npc.name + ". " + npc.description() + " \n"
+            else:
+                room_description+= preface + npc.name
+            
+        room_description += "You also see... \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room.name + " \n"
+            
         print(room_description)
     
     def short_description(self):
@@ -636,10 +663,27 @@ class supply_closet(Room):
     
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
+            
+        for npc in self.npcs:
+            npc_description = npc.description()
+            if npc_description is not None:
+                room_description+= preface + npc.name + ". " + npc.description() + " \n"
+            else:
+                room_description+= preface + npc.name
+            
+        room_description += "You also see... \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room.name + " \n"
+            
         print(room_description)
     
     def short_description(self):
@@ -676,10 +720,27 @@ class common_area(Room):
     
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            room_description+= preface + item.name + ". " + item.description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
+            
+        for npc in self.npcs:
+            npc_description = npc.description()
+            if npc_description is not None:
+                room_description+= preface + npc.name + ". " + npc.description() + " \n"
+            else:
+                room_description+= preface + npc.name
+            
+        room_description += "You also see... \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room.name + " \n"
+            
         print(room_description)
     
     def short_description(self):
@@ -717,11 +778,27 @@ class cubicle(Room):
     
     def long_description(self):
         #This builds a long description of all items and their states
+        name = "You are in the " + self.name + "\n"
         preface = "You see a "
-        room_description = ""
+        room_description = name
         for item in self.items:
-            print(item)
-            #room_description+= preface + item.name + ". " + item.description() + " \n"
+            item_description = item.description()
+            if item_description is not None:
+                room_description+= preface + item.name + ". " + item_description + " \n"
+            else:
+                room_description+= preface + item.name + "\n"
+            
+        for npc in self.npcs:
+            npc_description = npc.description()
+            if npc_description is not None:
+                room_description+= preface + npc.name + ". " + npc.description() + " \n"
+            else:
+                room_description+= preface + npc.name
+            
+        room_description += "You also see... \n"
+        for door in self.doors:
+            room_description += "a door to " + door.from_room.name + " \n"
+            
         print(room_description)
     
     def short_description(self):

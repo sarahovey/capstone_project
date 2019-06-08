@@ -34,12 +34,12 @@ class Game:
         message3 = "Are you ready to see your human?"
         end_description = "time to see your human!"
         end_door = items.phase_door(self.player, None, message3, "the end", end_description)
-        phase3.rooms[1].npcs[0].inventory.append(end_door)
+        phase3.rooms[1].npcs[0].inventory.append(end_door) #the ending door/cutscene
         
         self.phases_list = [phase1, phase2, phase3]
         
         #changing this to help with testing, should be phase 1 here for real
-        phase1.start_phase()
+        phase3.start_phase()
     
         
     #if the first two words in a 3+ word command are "talk to"
