@@ -117,7 +117,7 @@ class Phase3:
         self.player.current_room = self.spawn_point
 
         #show game starting text
-        filepath = 'phase3_starting_flavor.txt' 
+        filepath = 'data/phase3_starting_flavor.txt' 
         with open(filepath) as fp: 
             for line in fp:
                 print(line)
@@ -137,7 +137,7 @@ class Phase3:
         break_room.doors = [break_room_door]
         
         supply_closet = rooms.supply_closet(self.player)
-        supply_closet_door = items.gate(self.player, lobby, break_room)
+        supply_closet_door = items.gate(self.player, lobby, supply_closet)
         supply_closet.doors = [supply_closet_door]
         
         common_area = rooms.common_area(self.player)
