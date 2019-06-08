@@ -43,33 +43,15 @@ class living_room(Room):
         print("You are in the " + self.name)
         print("You see....")
         for item in self.items:
-            print("\t-" + item.name + " " + str(item.description()) + "\n")
-        # #This builds a long description of all items and their states
-        # name = "You are in the " + self.name + "\n"
-        # preface = "You see a "
-        # room_description = name
-        # iteritems = self.items
-        # skipfirst = iter(iteritems)
-        # next(skipfirst)
-        # for item in skipfirst:
-        #     #something is failing while building this string
-        #     item_description = item.description()
-        #     if item_description is not None:
-        #         #print("THIS IS A KEY TOO HAHA")
-        #         #found it
-        #         room_description+= preface + item.name + ". " + item_description + " \n"
-        #     else:
-        #         room_description+= preface + item.name + "\n"
+            print("\t-" + item.name + ". " + str(item.description()))
             
-        # room_description += "\nYou also see... \n"
-        # for door in self.doors:
-        #     #print(door.name)
-        #     if door.name == "front door":
-        #         room_description += "the front door, outside it lies.... the whole world!"
-        #     else:
-        #         room_description += "a door to the " + door.to_room.name + " \n"
+        print("You also see...")
             
-        # print(room_description)
+        for door in self.doors:
+            if door.name == "front door":
+                print("\t-the front door, outside it lies the whole world!!")
+            else:
+                print("\t-a door to the " + door.to_room.name)
         
     def short_description(self):
         #short description, used when you enter an already entered room
