@@ -52,9 +52,9 @@ class rusty(NPC):
     def description(self):
         #description can depend on whether or not you've already met the npc
         if self.met == True:
-            print("It's Rusty, your new friend")
+            return "It's Rusty, your new friend"
         else:
-            print("Another Cattle Dog, big and red. Maybe a new friend?")
+            return "Another Cattle Dog, big and red. Maybe a new friend?"
         
     def is_quest_finished(self):
         print("checking quest")
@@ -106,9 +106,9 @@ class coworker(NPC):
     def description(self):
         #description can depend on whether or not you've already met the npc
         if self.met:
-            print("It's another person, your human's coworker")
+            return "It's another person, your human's coworker"
         else:
-            print("A human in the office. Must be your human's coworker.")
+            return "A human in the office. Must be your human's coworker."
         
     def show_dialogue(self):
         print("Hey buddy, are you lost? I'll look at your tags")

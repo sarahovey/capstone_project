@@ -93,8 +93,6 @@ class Player:
             #there is only one occasion of a phase door being put into the doors list in a room
             
             #BUGS HERE with print stuck in for loop
-
-            # print("looking through all the doors in this room...")
             for door in self.current_room.doors:
 
                 #this supports just the name of the room, we'd need to strip "door" 
@@ -113,7 +111,6 @@ class Player:
                 #this is always the front door in phase 1
                 elif hasattr(door, 'to_phase'):
                     if door.name == target_door:
-                        # print(target_door)
                         door.interact()
                         
         #Phase 2 gates
