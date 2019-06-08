@@ -66,7 +66,7 @@ class bed (Item):
     def __init__(self):
         self.name = "bed"
         self.can_be_held = False
-        self.actions = ["jump on"]
+        self.actions = ["jump on", "look at"]
     
     def description(self):
         return "A big comfy bed!"
@@ -99,7 +99,7 @@ class book_shelf (Item):
     def __init__(self):
         self.name = "book shelf"
         self.can_be_held = False
-        self.actions = ["read"]
+        self.actions = ["read", "look at"]
     
     def description(self):
         return "A shelf filled with books. You can't read."
@@ -134,7 +134,7 @@ class door (Item):
         self.needed_key = needed_key
         self.from_room = from_room
         self.to_room = to_room
-        self.actions = ["unlock", "enter", "open"]
+        self.actions = ["unlock", "enter", "open", "look at"]
         
     def description(self):
         if self.unlocked:
@@ -184,7 +184,7 @@ class hose (Item):
     def __init__(self):
         self.name = "hose"
         self.can_be_held = False
-        self.hose = ["play with", "play"]
+        self.hose = ["play with", "play", "look at"]
         self.touched = False
     
     def description(self):
@@ -205,7 +205,7 @@ class key (Item):
         self.name = name
         self.can_be_held = True
         self.can_be_dropped = False
-        self.actions = ["use", "unlock"]
+        self.actions = ["use", "unlock", "look at"]
     
     def description(self):
         return "A Bluetooth key. You don't need thumbs to unlock anything anymore!"
@@ -223,7 +223,7 @@ class kiddie_pool (Item):
     def __init__(self):
         self.name = "kiddie pool"
         self.can_be_held = False
-        self.actions = ["splash", "swim", "jump"]
+        self.actions = ["splash", "swim", "jump", "look at"]
     
     def description(self):
         return "A shallow pool for you to cool your paws in"
@@ -235,7 +235,7 @@ class kibble (Item):
     def __init__(self):
         self.name = "kibble bowl"
         self.can_be_held = False
-        self.actions = ["eat", "nom"]
+        self.actions = ["eat", "nom", "look at"]
         self.touched = False
     
     def description(self):
@@ -264,7 +264,7 @@ class tennis_ball (Item):
     def __init__(self):
         self.name = "tennis ball"
         self.can_be_held = True
-        self.actions = ["chew", "play", "play with"]
+        self.actions = ["chew", "play", "play with", "look at"]
         self.touched = False
     
     def description(self):
@@ -281,7 +281,7 @@ class trash_can (Item):
     def __init__(self):
         self.name = "trash can"
         self.can_be_held = False
-        self.actions = ["sniff"]
+        self.actions = ["sniff", "look at"]
     
     def description(self):
         return "A container that you see your person throw things into... it smells great!"
@@ -305,7 +305,7 @@ class tug_rope (Item):
     def __init__(self):
         self.name = "tug rope"
         self.can_be_held = True
-        self.actions = ["grab", "chew"]
+        self.actions = ["grab", "chew", "look at"]
     
     def description(self):
         return "A nice rope for playing tug of war with."
@@ -337,7 +337,7 @@ class gate (Item):
         self.player = player
         self.from_room = from_room
         self.to_room = to_room
-        self.actions = ["enter", "go through", "open"]
+        self.actions = ["enter", "go through", "open", "look at"]
         
     def description(self):
         return "it's a gate between the " + self.from_room + " and " + self.to_room + "\nenter this gate to go to " + self.to_room
@@ -355,7 +355,7 @@ class shovel (Item):
     def __init__(self):
         self.name = "shovel"
         self.can_be_held = True
-        self.actions = ["hold", "scoop"]
+        self.actions = ["hold", "scoop", "look at"]
         self.touched = False
     
     def description(self):
@@ -372,7 +372,7 @@ class bucket (Item):
     def __init__(self):
         self.name = "bucket"
         self.can_be_held = False
-        self.actions = ["fill", "hold"]
+        self.actions = ["fill", "hold", "look at"]
         self.touched = False
     
     def description(self):
@@ -388,7 +388,7 @@ class frisbee(Item):
     def __init__(self):
         self.name = "frisbee"
         self.can_be_held = True
-        self.actions = ["chew", "play", "hold"]
+        self.actions = ["chew", "play", "hold", "look at"]
         self.touched = False
     
     def description(self):
@@ -404,7 +404,7 @@ class soccer_ball (Item):
     def __init__(self):
         self.name = "soccer ball"
         self.can_be_held = False
-        self.actions = ["chew", "play", "push"]
+        self.actions = ["chew", "play", "push", "look at"]
         self.touched = False
     
     def description(self):
@@ -420,7 +420,7 @@ class floaty (Item):
     def __init__(self):
         self.name = "floaty"
         self.can_be_held = False
-        self.actions = ["float"]
+        self.actions = ["float", "look at"]
         self.touched = False
     
     def description(self):
@@ -436,7 +436,7 @@ class swim_goggles (Item):
     def __init__(self):
         self.name = "swim goggles"
         self.can_be_held = True
-        self.actions = ["wear", "hold"]
+        self.actions = ["wear", "hold", "look at"]
         self.touched = False
     
     def description(self):
@@ -452,7 +452,7 @@ class snorkle (Item):
     def __init__(self):
         self.name = "snorkel"
         self.can_be_held = False
-        self.actions = ["wear"]
+        self.actions = ["wear", "look at"]
         self.touched = False
     
     def description(self):
@@ -468,7 +468,7 @@ class beach_ball (Item):
     def __init__(self):
         self.name = "beach ball"
         self.can_be_held = False
-        self.actions = ["play", "push"]
+        self.actions = ["play", "push", "look at"]
         self.touched = False
     
     def description(self):
@@ -484,7 +484,7 @@ class stick (Item):
     def __init__(self):
         self.name = "stick"
         self.can_be_held = True
-        self.actions = ["play", "bite"]
+        self.actions = ["play", "bite", "look at"]
         self.touched = False
     
     def description(self):
@@ -497,7 +497,7 @@ class squeaky_toy (Item):
     def __init__(self):
         self.name = "squeaky toy"
         self.can_be_held = True
-        self.actions = ["play", "bite"]
+        self.actions = ["play", "bite", "look at"]
         self.touched = False
     
     def description(self):
@@ -510,7 +510,7 @@ class map (Item):
     def __init__(self):
         self.name = "map"
         self.can_be_held = True
-        self.actions = ["use","read", "open"]
+        self.actions = ["use","read", "open", "look at"]
         self.touched = False
         self.phase_door = None #this gets populated
     
@@ -526,7 +526,7 @@ class pad_lock (Item):
     def __init__(self):
         self.name = "pad lock"
         self.can_be_held = False
-        self.actions = ["touch", "sniff", "yank"]
+        self.actions = ["touch", "sniff", "yank", "look at"]
         self.touched = False
 
     def description(self):
@@ -542,7 +542,7 @@ class door_mat (Item):
     def __init__(self):
         self.name = "door mat"
         self.can_be_held = False
-        self.actions = ["move", "jump", "sniff"]
+        self.actions = ["move", "jump", "sniff", "look at"]
         self.touched = False
 
     def description(self):
@@ -559,7 +559,7 @@ class office_key (Item):
     def __init__(self):
         self.name = "office key"
         self.can_be_held = True
-        self.actions = ["hold", "use"]
+        self.actions = ["hold", "use", "look at"]
         self.touched = False
 
     def description(self):
@@ -575,7 +575,7 @@ class plant (Item):
     def __init__(self):
         self.name = "plant"
         self.can_be_held = False
-        self.actions = ["sniff", "lick"]
+        self.actions = ["sniff", "lick", "look at"]
         self.touched = False
     
     def description(self):
@@ -591,7 +591,7 @@ class chair (Item):
     def __init__(self):
         self.name = "chair"
         self.can_be_held = False
-        self.actions = ["jump on"]
+        self.actions = ["jump on", "look at"]
         self.touched = False
     
     def description(self):
@@ -607,7 +607,7 @@ class magazine (Item):
     def __init__(self):
         self.name = "magazine"
         self.can_be_held = True
-        self.actions = ["hold", "lick"]
+        self.actions = ["hold", "lick", "look at"]
         self.touched = False
     
     def description(self):

@@ -25,12 +25,11 @@ class Player:
     def check_inventory(self):
         if len(self.inventory) == 0:
             print("Your saddlebags are empty!")
+            return
             
+        print("You check in your saddlebags and see")
         for item in self.inventory:
-            print(item.name)
-            
-            if item.description() is not None:
-                print(item.description())
+            print("\t- " + item.name + ". " + str(item.description()))
             
     def help(self):
         print("help messages")
@@ -138,6 +137,9 @@ class Player:
                     self.inventory.remove(item)
                     self.current_room.items.append(item)
                     print("you dropped " + item.name)
+                    return
+                
+                print("That item isn't in your inventory, you can't use or drop it!")
 
         #use an inventory item, 
         #just print the desc if it exists
@@ -145,6 +147,9 @@ class Player:
             for item in self.inventory:
                 if item.name == obj:
                     item.interact()
+                    return
+            print("That item isn't in your inventory, you can't use or drop it!")
+            
         else:
             print("That item isn't in your inventory, you can't use or drop it!")
         
