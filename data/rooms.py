@@ -84,23 +84,18 @@ class back_yard(Room):
         self.npcs = []
         
     def long_description(self):
-        #This builds a long description of all items and their states
-        start = "You are in the " + self.name + "\nYou take a look around... "
-        preface = "You see a "
-        room_description = start
+        print("You are in the " + self.name)
+        print("You see...")
         for item in self.items:
-            #something is failing while building this string
-            item_description = item.description()
-            if item_description is not None:
-                room_description+= preface + item.name + ". " + item_description + " \n"
-            else:
-                room_description+= preface + item.name + "\n"
+            print("\t- " + item.name + ". " + str(item.description()))
             
-        room_description += "\nYou also see... \n"
+        print("You also see...")
+            
         for door in self.doors:
-            room_description += "a door to the " + door.from_room.name + " \n"
-            
-        print(room_description)
+            if door.name == "front door":
+                print("\t- the front door, outside it lies the whole world!!")
+            else:
+                print("\t- a door to the " + door.to_room.name)
         
     def short_description(self):
         print("you are in the back yard")
@@ -137,8 +132,7 @@ class kitchen(Room):
         print("You are in the " + self.name)
         print("You see...")
         for item in self.items:
-            if item.description() is not None:
-                print("\t- " + item.name + ". " + str(item.description()))
+            print("\t- " + item.name + ". " + str(item.description()))
             
         print("You also see...")
             

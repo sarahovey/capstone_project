@@ -185,6 +185,7 @@ class hose (Item):
         self.name = "hose"
         self.can_be_held = False
         self.hose = ["play with", "play"]
+        self.touched = False
     
     def description(self):
         if self.touched:
@@ -295,7 +296,7 @@ class treat (Item):
         self.actions = ["eat", "sniff"]
     
     def description(self):
-        print("A meaty snack for a good dog!")
+        return "A meaty snack for a good dog!"
             
     def interact(self):
         print("Tasty!")

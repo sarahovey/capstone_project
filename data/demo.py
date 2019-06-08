@@ -12,5 +12,3 @@ while(1):
     print("\nwhat do you do?")
     command = input()
     parser.parse(command)
-    
-    
