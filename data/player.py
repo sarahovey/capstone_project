@@ -87,14 +87,14 @@ class Player:
         #print("on the player, the door is " + target_door)
         #Phase 1 and 3 doors
         if hasattr(self.current_room, 'doors'):
-            print("this time its a regular door")
+            # print("this time its a regular door")
             #there is only one occasion of a phase door being put into the doors list in a room
             
             #BUGS HERE with print stuck in for loop
 
             # print("looking through all the doors in this room...")
             for door in self.current_room.doors:
-                print("looking through all the doors in this room...")
+                # print("looking through all the doors in this room...")
                 #this supports just the name of the room, we'd need to strip "door" 
                 #out in the parser from the end of a command, unless its 'front door'
                 if hasattr(door, 'to_room' ):
@@ -124,8 +124,9 @@ class Player:
                         gate.interact()
                         return
                     else:
+                        pass
                         # print("bad door")
-                        print("I don't think that's a door...")
+                        # print("I don't think that's a door...")
             
     #Dropping or using an item in inventory    
     def interact_inventory(self, action, obj):

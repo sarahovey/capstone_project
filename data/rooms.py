@@ -359,7 +359,7 @@ class open_grass(Room):
             else:
                 room_description+= preface + item.name + "\n"
             
-        room_description += "  You also see... \n"
+        room_description += "You also see... \n"
         for gate in self.gates:
             room_description += "a gate to " + gate.to_room.name + " \n"
             
