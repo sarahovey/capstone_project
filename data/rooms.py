@@ -39,19 +39,18 @@ class living_room(Room):
         self.npcs = []
         
     def long_description(self):
-        
         print("You are in the " + self.name)
-        print("You see....")
+        print("You see...")
         for item in self.items:
-            print("\t-" + item.name + ". " + str(item.description()))
+            print("\t- " + item.name + ". " + str(item.description()))
             
         print("You also see...")
             
         for door in self.doors:
             if door.name == "front door":
-                print("\t-the front door, outside it lies the whole world!!")
+                print("\t- the front door, outside it lies the whole world!!")
             else:
-                print("\t-a door to the " + door.to_room.name)
+                print("\t- a door to the " + door.to_room.name)
         
     def short_description(self):
         #short description, used when you enter an already entered room
@@ -135,25 +134,19 @@ class kitchen(Room):
         self.npcs = []
         
     def long_description(self):
-        #This builds a long description of all items and their states
-        print("\nYou are in the " + self.name + "\nYou take a look around... ")
-        room_description = ""
-        current_item = ""
-        preface = "You see a "
+        print("You are in the " + self.name)
+        print("You see...")
         for item in self.items:
-            item_description = item.description()
-            if item_description is not None:
-                print("You see a " + item.name + " " + item.description + "\n")
-            else:
-                print(item.name + "\n")
-                
-            #print("This is the current sentence:" + current_item)
-            #room_description +=current_item
+            if item.description() is not None:
+                print("\t- " + item.name + ". " + str(item.description()))
             
-        #room_description += "\nYou also see... \n"
-        print("You also see.... \n")
+        print("You also see...")
+            
         for door in self.doors:
-            print("a door to the " + door.from_room.name + " \n")
+            if door.name == "front door":
+                print("\t- the front door, outside it lies the whole world!!")
+            else:
+                print("\t- a door to the " + door.to_room.name)
             
         #print(room_description)
         
