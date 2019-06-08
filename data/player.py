@@ -28,6 +28,7 @@ class Player:
             
         for item in self.inventory:
             print(item.name)
+            
             if item.description() is not None:
                 print(item.description())
             
@@ -88,14 +89,14 @@ class Player:
         #print("on the player, the door is " + target_door)
         #Phase 1 and 3 doors
         if hasattr(self.current_room, 'doors'):
-            # print("this time its a regular door")
+
             #there is only one occasion of a phase door being put into the doors list in a room
             
             #BUGS HERE with print stuck in for loop
 
             # print("looking through all the doors in this room...")
             for door in self.current_room.doors:
-                # print("looking through all the doors in this room...")
+
                 #this supports just the name of the room, we'd need to strip "door" 
                 #out in the parser from the end of a command, unless its 'front door'
                 if hasattr(door, 'to_room' ):
@@ -140,8 +141,7 @@ class Player:
                     self.inventory.remove(item)
                     self.current_room.items.append(item)
                     print("you dropped " + item.name)
-            # else:
-            #     print("You can't dooo that!")
+
         #use an inventory item, 
         #just print the desc if it exists
         elif action == "use":
