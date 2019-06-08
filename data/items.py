@@ -4,7 +4,7 @@ class Item:
         self.name = name
         self.touched = False
         self.can_be_held = can_be_held
-        self.destroy = false
+        self.destroy = False
     
     def description(self):
         if self.touched is False:
@@ -18,10 +18,6 @@ class Item:
         else:
             print("unaltered")
     
-    # def drop_item(self):
-    #     if self.d:
-    #         print("not ")
-       
 class phase_door(Item):
     def __init__(self, player, to_phase, message, name, description_string):
         self.name = name
