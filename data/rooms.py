@@ -92,10 +92,7 @@ class back_yard(Room):
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
         
     def short_description(self):
         print("you are in the back yard")
@@ -137,10 +134,7 @@ class kitchen(Room):
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
             
         #print(room_description)
         
@@ -183,10 +177,7 @@ class office(Room):
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
         
     def short_description(self):
         print("you are in the office")
@@ -226,10 +217,7 @@ class bedroom(Room):
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
         
     def short_description(self):
         print("you are in the bedroom")
@@ -270,10 +258,7 @@ class sand_pit(Room):
         print("You also see...")
             
         for gate in self.gates:
-            if gate.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + gate.to_room.name)
+            print("\t- a door to the " + gate.from_room.name)
         
     
     def short_description(self):
@@ -318,10 +303,7 @@ class open_grass(Room):
         print("You also see...")
             
         for gate in self.gates:
-            if gate.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + gate.to_room.name)
+            print("\t- a door to the " + gate.to_room.name)
     
     def short_description(self):
         print("You find yourself in a big open field of grass!")
@@ -362,13 +344,13 @@ class agility_course(Room):
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
             
+        for npc in self.npcs:
+               print("\t- " + npc.name + ". " + str(npc.description()))
+            
         print("You also see...")
             
         for gate in self.gates:
-            if gate.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + gate.to_room.name)
+            print("\t- a door to the " + gate.from_room.name)
     
     def short_description(self):
         print("You are at the agility course!")
@@ -410,10 +392,7 @@ class dog_pool(Room):
         print("You also see...")
             
         for gate in self.gates:
-            if gate.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + gate.to_room.name)
+            print("\t- a door to the " + gate.from_room.name)
     
     def short_description(self):
         print("You find yourself at the edge of the dog pool. Good thing you know how to swim.")
@@ -455,10 +434,7 @@ class shady_grove(Room):
         print("You also see...")
             
         for gate in self.gates:
-            if gate.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + gate.to_room.name)
+            print("\t- a door to the " + gate.from_room.name)
     
     def short_description(self):
         print("A shady grove of trees and grass.")
@@ -501,10 +477,7 @@ class lobby(Room):
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.to_room.name)
 
     def short_description(self):
             print("You stumble upon the entrance of an office. Maybe your owner is here!")
@@ -546,10 +519,7 @@ class break_room(Room):
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
     
     def short_description(self):
         print("This looks like the breakroom, the perfect place to find snacks lying around.")
@@ -591,10 +561,7 @@ class supply_closet(Room):
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
     
     def short_description(self):
         print("You stumble upon the supply closet. Everything useful is stored here.")
@@ -633,29 +600,15 @@ class common_area(Room):
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
-            
+        
+        for npc in self.npcs:
+               print("\t- " + npc.name + ". " + str(npc.description()))
+        
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
-        
-        room_description = self.name
-        for npc in self.npcs:
-            npc_description = npc.description()
-            if npc_description is not None:
-                room_description += preface + npc.name + ". " + npc.description() + " \n"
-            else:
-                room_description += preface + npc.name
+            print("\t- a door to the " + door.to_room.name)
             
-        room_description += " You also see... \n"
-        for door in self.doors:
-            room_description += "a door to " + door.from_room.name + " \n"
-            
-        print(room_description)
-    
     def short_description(self):
         print("You find yourself in the lobby. It's quiet... too quiet.")
     
@@ -694,29 +647,14 @@ class cubicle(Room):
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
-            
+        
+        for npc in self.npcs:
+               print("\t- " + npc.name + ". " + str(npc.description()))
+        
         print("You also see...")
             
         for door in self.doors:
-            if door.name == "front door":
-                print("\t- the front door, outside it lies the whole world!!")
-            else:
-                print("\t- a door to the " + door.to_room.name)
-        
-        preface = "You also see..."
-        room_description = self.name
-        for npc in self.npcs:
-            npc_description = npc.description()
-            if npc_description is not None:
-                room_description+= preface + npc.name + ". " + npc.description() + " \n"
-            else:
-                room_description+= preface + npc.name
-            
-        room_description += " You also see... \n"
-        for door in self.doors:
-            room_description += "a door to " + door.from_room.name + " \n"
-            
-        print(room_description)
+            print("\t- a door to the " + door.to_room.name)
     
     def short_description(self):
         print("You stumble upon the supply closet. Everything useful is stored here.")
