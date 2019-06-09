@@ -1,6 +1,6 @@
 class Parser:
     def __init__(self, game):
-        self.game = game
+        self.game = game #this allows the parser to directly interface with the game API
         
     def parse(self, command):
         command = command.split()
