@@ -57,7 +57,6 @@ class rusty(NPC):
             return "Another Cattle Dog, big and red. Maybe a new friend?"
         
     def is_quest_finished(self):
-        print("checking quest")
         #Check if the player has the npc's requested item in their inventoru
         item_found = self.quest_finished = self.player.find_item(["tennis ball", "stick", "squeaky toy"])
         
@@ -69,7 +68,6 @@ class rusty(NPC):
         #or something else
         #that can change dialogue
         if self.met:
-            print("this npc has been met")
             if self.is_quest_finished():
                 if self.concluded_quest:
                     print("Thanks for bringing me that great toy!")

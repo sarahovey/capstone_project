@@ -607,7 +607,7 @@ class common_area(Room):
         print("You also see...")
             
         for door in self.doors:
-            print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
             
     def short_description(self):
         print("You find yourself in the lobby. It's quiet... too quiet.")
@@ -654,7 +654,7 @@ class cubicle(Room):
         print("You also see...")
             
         for door in self.doors:
-            print("\t- a door to the " + door.to_room.name)
+            print("\t- a door to the " + door.from_room.name)
     
     def short_description(self):
         print("You stumble upon the supply closet. Everything useful is stored here.")

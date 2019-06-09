@@ -114,6 +114,7 @@ class Player:
                 elif hasattr(door, 'to_phase'):
                     if door.name == target_door:
                         door.interact()
+                        return
                         
         #Phase 2 gates
         if hasattr(self.current_room, 'gates'):
@@ -130,6 +131,7 @@ class Player:
                         # print("bad door")
                         # print("I don't think that's a door...")
             
+        print("That's not a room you can go into!")
     #Dropping or using an item in inventory    
     def interact_inventory(self, action, obj):
         if action == "drop":

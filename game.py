@@ -24,7 +24,7 @@ class Game:
         front_door = items.phase_door(self.player, phase2, message1, "front door", front_door_description)
         phase1.spawn_point.doors.append(front_door)
         
-        message2 = "Do you want to use the map to go to your human's office?"
+        message2 = "Time to go to your human's office!"
         map_description = "a map to your human's office"
         map_door  = items.phase_door(self.player, phase3, message2, "map", map_description)
     
@@ -39,7 +39,7 @@ class Game:
         self.phases_list = [phase1, phase2, phase3]
         
         #changing this to help with testing, should be phase 1 here for real
-        phase1.start_phase()
+        phase2.start_phase()
     
         
     #if the first two words in a 3+ word command are "talk to"
