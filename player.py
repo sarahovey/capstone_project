@@ -32,8 +32,11 @@ class Player:
             print("\t- " + item.name + ". " + str(item.description()))
             
     def help(self):
-        print("help messages")
-            
+        filepath = 'help.txt' 
+        with open(filepath) as fp: 
+            for line in fp:
+                print(line)
+
     #Get a list of item names (strings) to see if the player has one or mroe in inventory
     def find_item(self, items):
         for item in self.inventory:
