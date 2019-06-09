@@ -37,6 +37,9 @@ class phase_door(Item):
             if item.name == 'front door key':
                 print("You unlocked the front door!")
                 self.start_next_phase()
+                return
+        print("The front door is locked...")
+            
         
     def start_next_phase(self):
         #are you sure?
