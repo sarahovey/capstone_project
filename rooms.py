@@ -55,6 +55,9 @@ class living_room(Room):
     def short_description(self):
         #short description, used when you enter an already entered room
         print("You are in the living room")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.to_room.name)
         
     def enter_room(self):
         if self.entered:
@@ -96,6 +99,10 @@ class back_yard(Room):
         
     def short_description(self):
         print("you are in the back yard")
+        print("You see...")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
         
     def enter_room(self):
         if self.entered:
@@ -140,6 +147,10 @@ class kitchen(Room):
         
     def short_description(self):
         print("you are in the kitchen")
+        print("You see...")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
         
     def enter_room(self):
         if self.entered:
@@ -181,6 +192,9 @@ class office(Room):
         
     def short_description(self):
         print("you are in the office")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
         
     def enter_room(self):
         if self.entered:
@@ -221,6 +235,9 @@ class bedroom(Room):
         
     def short_description(self):
         print("you are in the bedroom")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
         
     def enter_room(self):
         if self.entered:
@@ -263,6 +280,9 @@ class sand_pit(Room):
     
     def short_description(self):
         print("You entered the Sand Box! It is nice and soft in here")
+        print("You see...")
+        for gate in self.gates:
+            print("\t- a door to the " + gate.from_room.name)
     
     def enter_room(self):
         if self.entered:
@@ -307,6 +327,9 @@ class open_grass(Room):
     
     def short_description(self):
         print("You find yourself in a big open field of grass!")
+        print("You see...")
+        for gate in self.gates:
+            print("\t- a door to the " + gate.to_room.name)
     
     def enter_room(self):
         if self.entered:
@@ -354,6 +377,9 @@ class agility_course(Room):
     
     def short_description(self):
         print("You are at the agility course!")
+        print("You see...")
+        for gate in self.gates:
+            print("\t- a door to the " + gate.from_room.name)
     
     def enter_room(self):
         if self.entered:
@@ -396,6 +422,10 @@ class dog_pool(Room):
     
     def short_description(self):
         print("You find yourself at the edge of the dog pool. Good thing you know how to swim.")
+        
+        print("You see...")
+        for gate in self.gates:
+            print("\t- a door to the " + gate.from_room.name)
     
     def enter_room(self):
         if self.entered:
@@ -438,6 +468,10 @@ class shady_grove(Room):
     
     def short_description(self):
         print("A shady grove of trees and grass.")
+        print("You see...")
+        for gate in self.gates:
+            print("\t- a door to the " + gate.from_room.name)
+        
     
     def enter_room(self):
         if self.entered:
@@ -480,7 +514,10 @@ class lobby(Room):
             print("\t- a door to the " + door.to_room.name)
 
     def short_description(self):
-            print("You stumble upon the entrance of an office. Maybe your owner is here!")
+        print("You stumble upon the entrance of an office. Maybe your owner is here!")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.to_room.name)
 
     def enter_room(self):
         if self.entered:
@@ -523,6 +560,9 @@ class break_room(Room):
     
     def short_description(self):
         print("This looks like the breakroom, the perfect place to find snacks lying around.")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
     
     def enter_room(self):
         if self.entered:
@@ -565,6 +605,9 @@ class supply_closet(Room):
     
     def short_description(self):
         print("You stumble upon the supply closet. Everything useful is stored here.")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
     
     def enter_room(self):
         if self.entered:
@@ -611,6 +654,9 @@ class common_area(Room):
             
     def short_description(self):
         print("You find yourself in the lobby. It's quiet... too quiet.")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
     
     def enter_room(self):
         if self.entered:
@@ -658,6 +704,9 @@ class cubicle(Room):
     
     def short_description(self):
         print("You stumble upon the supply closet. Everything useful is stored here.")
+        print("You see...")
+        for door in self.doors:
+            print("\t- a door to the " + door.from_room.name)
     
     def enter_room(self):
         if self.entered:
