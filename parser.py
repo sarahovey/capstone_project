@@ -43,9 +43,10 @@ class Parser:
                 
             #if the first word in a 3 word command is "open", "unlock", or "enter"
             elif command[0] in door_words or command[0] + " " + command[1] in door_words:
-                #do we need the full phrase? like 'kitchen door' or just 'kitchen'?
-                #we should be checking to see if the last word is 'door' and maybe get rid of that?
-                door=command[1] + " " + command[2]
+                if command[0] + " " + command[1] == 'go to':
+                    door = command[2]
+                else:
+                    door=command[1] + " " + command[2]
                 self.game.player_door_interaction(door)
                 
             elif command[0] == "look" and command[1] == "at":

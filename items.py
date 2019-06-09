@@ -62,7 +62,7 @@ class phase_door(Item):
                 for line in fp:
                     print(line)
                     input()
-                    exit()
+                exit()
         
 #phase 1 items
 class bed (Item):
