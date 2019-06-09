@@ -58,7 +58,7 @@ class Player:
         
     def change_room(self, new_room):
         self.current_room = new_room
-        self.current_room.long_description()
+        self.current_room.enter_room()
         
     #Single word actions
     def action(self, action):
@@ -132,6 +132,7 @@ class Player:
                         # print("I don't think that's a door...")
             
         print("That's not a room you can go into!")
+        
     #Dropping or using an item in inventory    
     def interact_inventory(self, action, obj):
         if action == "drop":
