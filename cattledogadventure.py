@@ -3,7 +3,7 @@ import items
 import phase
 import npcs
 import initializer
-import test_parser
+import parser
 
 initializer = initializer.initializer()
 parser = initializer.parser

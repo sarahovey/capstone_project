@@ -1,6 +1,6 @@
 import phase
 import game
-import test_parser
+import parser
 
 class initializer:
     #how to use:
@@ -10,7 +10,7 @@ class initializer:
     def __init__(self):
         self.start_screen()
         self.game = game.Game()
-        self.parser = test_parser.Parser(self.game)
+        self.parser = parser.Parser(self.game)
         
     #start up the parser
     def start_parser(self):

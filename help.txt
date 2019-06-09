@@ -1,4 +1,12 @@
 ~Helper~
+-inventory: get a look at your inventory
+-take: take an item
+-use: use an item in your inventory
 -look [item]: closely inspect an item
 -look around: get a desription of what you can see
--
+-open [door]: open a door or gate to get to a different room. You may need to have the right key in your inventory!
+-quit: quit the game
+
+Other hints:
+-Try talking to other characters when you find them!
+-Try to interact with different items in the room. Think about how you might use them
