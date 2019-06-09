@@ -75,8 +75,10 @@ class rusty(NPC):
                     print("Thanks for bringing me that great toy!")
                     print("Try reading that map to find your human")
                 else:
-                    print("Wow you brought me something really special!")
-                    print("Can we trade for this map I have? I think it would help you find your hooman's work")
+                    print("Wow you brought me something really special! Let's play together!")
+                    print(".....")
+                    input()
+                    print("I had so much fun! I'm going to give you this map I have. I think it would help you find your hooman's work")
                     input()
                     print("[The map has been added to your inventory!]")
                     self.player.inventory.append(self.inventory[0])
