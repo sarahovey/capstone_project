@@ -40,6 +40,7 @@ class living_room(Room):
         
     def long_description(self):
         print("You are in the " + self.name)
+        print("This is home. A cozy zone")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -54,14 +55,14 @@ class living_room(Room):
         
     def short_description(self):
         #short description, used when you enter an already entered room
-        print("You are in the living room")
+        print("You are back in the living room")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.to_room.name)
         
     def enter_room(self):
         if self.entered:
-            self.long_description()
+            self.short_description()
         else:
             self.long_description()
             self.entered = True
@@ -88,6 +89,7 @@ class back_yard(Room):
         
     def long_description(self):
         print("You are in the " + self.name)
+        print("You love spending time playing in the yard")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -98,8 +100,7 @@ class back_yard(Room):
             print("\t- a door to the " + door.from_room.name)
         
     def short_description(self):
-        print("you are in the back yard")
-        print("You see...")
+        print("you are back in the back yard")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
@@ -134,6 +135,7 @@ class kitchen(Room):
         
     def long_description(self):
         print("You are in the " + self.name)
+        print("Your human always makes yummy food in here")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -146,8 +148,7 @@ class kitchen(Room):
         #print(room_description)
         
     def short_description(self):
-        print("you are in the kitchen")
-        print("You see...")
+        print("you are back in the kitchen")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
@@ -181,6 +182,7 @@ class office(Room):
         
     def long_description(self):
         print("You are in the " + self.name)
+        print("This is where the human gets work done")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -191,7 +193,7 @@ class office(Room):
             print("\t- a door to the " + door.from_room.name)
         
     def short_description(self):
-        print("you are in the office")
+        print("you are back in the office")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
@@ -224,6 +226,7 @@ class bedroom(Room):
         
     def long_description(self):
         print("You are in the " + self.name)
+        print("You always get to sleep in the bed")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -234,7 +237,7 @@ class bedroom(Room):
             print("\t- a door to the " + door.from_room.name)
         
     def short_description(self):
-        print("you are in the bedroom")
+        print("you are back in the bedroom")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
@@ -268,6 +271,7 @@ class sand_pit(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("This seems like a good spot to dig a hole!")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -279,7 +283,7 @@ class sand_pit(Room):
         
     
     def short_description(self):
-        print("You entered the Sand Box! It is nice and soft in here")
+        print("You are back in the sand pit")
         print("You see...")
         for gate in self.gates:
             print("\t- a door to the " + gate.from_room.name)
@@ -316,6 +320,7 @@ class open_grass(Room):
         
     def long_description(self):
         print("You are in the " + self.name)
+        print("It's a big grassy field that's nice and soft on your paws")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -326,7 +331,7 @@ class open_grass(Room):
             print("\t- a door to the " + gate.to_room.name)
     
     def short_description(self):
-        print("You find yourself in a big open field of grass!")
+        print("You are back in the open grassy field")
         print("You see...")
         for gate in self.gates:
             print("\t- a door to the " + gate.to_room.name)
@@ -363,6 +368,7 @@ class agility_course(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("You see lots of equipment to do agility training")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -376,7 +382,7 @@ class agility_course(Room):
             print("\t- a door to the " + gate.from_room.name)
     
     def short_description(self):
-        print("You are at the agility course!")
+        print("You are back in the agility course!")
         print("You see...")
         for gate in self.gates:
             print("\t- a door to the " + gate.from_room.name)
@@ -411,6 +417,7 @@ class dog_pool(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("There is a huge swimming pool for you to padle around in")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -421,7 +428,7 @@ class dog_pool(Room):
             print("\t- a door to the " + gate.from_room.name)
     
     def short_description(self):
-        print("You find yourself at the edge of the dog pool. Good thing you know how to swim.")
+        print("You are back in the dog pool!")
         
         print("You see...")
         for gate in self.gates:
@@ -457,6 +464,7 @@ class shady_grove(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("More grassy area, this time covered by big shady trees")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -467,7 +475,7 @@ class shady_grove(Room):
             print("\t- a door to the " + gate.from_room.name)
     
     def short_description(self):
-        print("A shady grove of trees and grass.")
+        print("You are back in the shady grove")
         print("You see...")
         for gate in self.gates:
             print("\t- a door to the " + gate.from_room.name)
@@ -504,6 +512,7 @@ class lobby(Room):
 
     def long_description(self):
         print("You are in the " + self.name)
+        print("This is the entrance to the office building that the map sent you to")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -514,7 +523,7 @@ class lobby(Room):
             print("\t- a door to the " + door.to_room.name)
 
     def short_description(self):
-        print("You stumble upon the entrance of an office. Maybe your owner is here!")
+        print("You are back in the lobby")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.to_room.name)
@@ -549,6 +558,7 @@ class break_room(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("This is where all the people eat their lunch. You suspect there may be snacks in here... but you're a good dog.")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -559,7 +569,7 @@ class break_room(Room):
             print("\t- a door to the " + door.from_room.name)
     
     def short_description(self):
-        print("This looks like the breakroom, the perfect place to find snacks lying around.")
+        print("You are back in the breakroom.")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
@@ -594,6 +604,7 @@ class supply_closet(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("There are lots of paper supplies and pens in here")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -604,7 +615,7 @@ class supply_closet(Room):
             print("\t- a door to the " + door.from_room.name)
     
     def short_description(self):
-        print("You stumble upon the supply closet. Everything useful is stored here.")
+        print("You are back in the supply closet.")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
@@ -640,6 +651,7 @@ class common_area(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("This is where people hang out... no one seems to be paying attention")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -653,7 +665,7 @@ class common_area(Room):
             print("\t- a door to the " + door.from_room.name)
             
     def short_description(self):
-        print("You find yourself in the lobby. It's quiet... too quiet.")
+        print("You are back in the break room")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
@@ -690,6 +702,7 @@ class cubicle(Room):
     
     def long_description(self):
         print("You are in the " + self.name)
+        print("This is where one person works alone in their cube of shame... It's very grey in here")
         print("You see...")
         for item in self.items:
             print("\t- " + item.name + ". " + str(item.description()))
@@ -703,7 +716,7 @@ class cubicle(Room):
             print("\t- a door to the " + door.from_room.name)
     
     def short_description(self):
-        print("You stumble upon the supply closet. Everything useful is stored here.")
+        print("You are back in the cubicle")
         print("You see...")
         for door in self.doors:
             print("\t- a door to the " + door.from_room.name)
